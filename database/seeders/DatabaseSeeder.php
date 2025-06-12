@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         Role::factory()->create([
-            'name' => 'super_admin',
+            'name' => 'Super Admin',
             'news_access' => true,
             'menu_access' => true,
             'about_us_access' => true,

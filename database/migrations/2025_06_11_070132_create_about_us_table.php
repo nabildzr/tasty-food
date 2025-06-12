@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('about_us', function (Blueprint $table) {
             $table->id();
-            $table->enum('content', [
-                1,
-                2,
-                3
+            $table->enum('position', [
+                'top',
+                'middle',
+                'bottom'
             ]);
             $table->string('title');
             $table->timestamps();
