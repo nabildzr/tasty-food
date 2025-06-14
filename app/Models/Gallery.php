@@ -10,6 +10,13 @@ class Gallery extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'photo'
+        'photo',
+        'created_by'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

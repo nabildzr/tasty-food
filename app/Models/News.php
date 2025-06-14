@@ -11,10 +11,15 @@ class News extends Model
 
 
     protected $fillable = [
-        'photo',
+        'banner',
         'slug',
         'title',
         'content',
         'created_by',
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

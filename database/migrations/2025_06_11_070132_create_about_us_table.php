@@ -18,6 +18,9 @@ return new class extends Migration
                 'middle',
                 'bottom'
             ]);
+            $table->string('photo_left');
+            $table->string('photo_right')->nullable();
+            $table->longText('content');
             $table->string('title');
             $table->timestamps();
         });

@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class AboutUsGallery extends Model
 {
     protected $fillable = [
-        'content'
+        'photo',
+        'position'
     ];  
+
+
+   
 }

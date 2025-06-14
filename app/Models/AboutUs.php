@@ -8,6 +8,9 @@ class AboutUs extends Model
 {
     protected $fillable = [
         'content',
+        'position',
         'title',
     ];
+
+
 }

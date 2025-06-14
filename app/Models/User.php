@@ -55,4 +55,16 @@ class User extends Authenticatable
     public function menu() {
         return $this->hasMany(Menu::class);
     }
+
+    public function news() {
+        return $this->hasMany(News::class);
+    }
+
+    public function galleries() {
+        return $this->hasMany(Gallery::class);
+    }
+
+    public function sliderGalleries() {
+        return $this->hasMany(SliderGallery::class);
+    }
 }

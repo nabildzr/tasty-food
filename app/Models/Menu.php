@@ -10,6 +10,7 @@ class Menu extends Model
         'name',
         'description',
         'created_by',
+        'photo'
     ];
 
     public function user() {

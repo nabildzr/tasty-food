@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('slider_galleries', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
+            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
