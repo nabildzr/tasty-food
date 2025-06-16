@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\AboutUs;
-use App\Models\AboutUsGallery;
 use App\Models\BusinessInformation;
 use App\Models\Role;
 use App\Models\User;
@@ -32,7 +31,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         BusinessInformation::factory()->create();
-     
 
         foreach (['top', 'middle', 'bottom'] as $position) {
             AboutUs::factory()->create([
@@ -43,7 +41,6 @@ class DatabaseSeeder extends Seeder
                 'title' => fake()->sentence(),
             ]);
         }
-
 
         User::factory()->create([
             'name' => 'Test User',

@@ -48,23 +48,28 @@ class User extends Authenticatable
         ];
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function menu() {
+    public function menu()
+    {
         return $this->hasMany(Menu::class);
     }
 
-    public function news() {
+    public function news()
+    {
         return $this->hasMany(News::class);
     }
 
-    public function galleries() {
+    public function galleries()
+    {
         return $this->hasMany(Gallery::class);
     }
 
-    public function sliderGalleries() {
+    public function sliderGalleries()
+    {
         return $this->hasMany(SliderGallery::class);
     }
 }

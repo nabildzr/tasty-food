@@ -8,32 +8,35 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('login');
     }
 
-    public function actionLogin(Request $request) {
+    public function actionLogin(Request $request)
+    {
         $validated = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'remember_me' => 'boolean',
         ]);
 
         $remember = $request->has('remember_me');
 
         // $user = User::where('email', $request->email)->first();
 
-        if(Auth::attempt($validated, $remember)) {
+        if (Auth::attempt($validated, $remember)) {
 
-           return redirect()->route('dashboard');
-    }
+            return redirect()->route('dashboard');
+        }
 
         return back()->with([
-            'error' => 'Failed to login, Invalid Credentials.'
+            'error' => 'Failed to login, Invalid Credentials.',
         ]);
     }
 
-    public function actionLogout(Request $request) {
+    public function actionLogout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();

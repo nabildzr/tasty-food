@@ -11,9 +11,6 @@ class AboutUsGallery extends Model
 
     protected $fillable = [
         'photo',
-        'position'
-    ];  
-
-
-   
+        'position',
+    ];
 }

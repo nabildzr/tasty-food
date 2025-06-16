@@ -15,7 +15,7 @@ class ClientNewsController extends Controller
         $news = News::orderByDesc('created_at')->get();
 
         return view('client.news.index')->with([
-            'news' => $news
+            'news' => $news,
         ]);
     }
 
@@ -43,7 +43,7 @@ class ClientNewsController extends Controller
         $news = News::findOrFail($id);
 
         return view('client.news.show')->with([
-            'news' => $news
+            'news' => $news,
         ]);
     }
 

@@ -16,7 +16,7 @@ class MenuController extends Controller
         $menus = Menu::orderByDesc('created_at')->get();
 
         return view('admin.menus.index')->with([
-            'menus' => $menus
+            'menus' => $menus,
         ]);
     }
 
@@ -43,20 +43,19 @@ class MenuController extends Controller
             $validated['photo'] = $request->file('photo')->store('menus', 'public');
         }
 
-
         $user = User::find(1);
         $validated['created_by'] = $user ? $user->id : null;
 
         $menu = Menu::create($validated);
 
-        if (!$menu) {
+        if (! $menu) {
             return back()->with([
-                'error' => 'Failed to create Menu'
+                'error' => 'Failed to create Menu',
             ]);
         }
 
         return redirect()->route('menus.index')->with([
-            'success' => 'Menu Successfully created.'
+            'success' => 'Menu Successfully created.',
         ]);
     }
 
@@ -76,7 +75,7 @@ class MenuController extends Controller
         $result = Menu::findOrFail($id);
 
         return view('admin.menus.form')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -95,18 +94,18 @@ class MenuController extends Controller
 
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('menus', 'public');
-        } 
+        }
 
         $menu->update($validated);
 
-        if (!$menu) {
+        if (! $menu) {
             return back()->with([
-                'error' => 'Failed to update Menu'
+                'error' => 'Failed to update Menu',
             ]);
         }
 
         return redirect()->route('menus.index')->with([
-            'success' => 'Menu Successfully updated.'
+            'success' => 'Menu Successfully updated.',
         ]);
     }
 
@@ -119,14 +118,14 @@ class MenuController extends Controller
 
         $status = $menu->delete();
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-            'error' => 'Failed to delete Menu'
+                'error' => 'Failed to delete Menu',
             ]);
         }
 
         return redirect()->route('menus.index')->with([
-            'success' => 'Menu Successfully deleted.'
+            'success' => 'Menu Successfully deleted.',
         ]);
     }
 }

@@ -18,7 +18,7 @@ class ClientGalleriesController extends Controller
 
         return view('client.galleries.index')->with([
             'sliderGalleries' => $sliderGalleries,
-            'galleries' => $galleries
+            'galleries' => $galleries,
         ]);
     }
 

@@ -15,14 +15,14 @@ class NewsController extends Controller
      */
     public function index()
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
         $news = News::orderByDesc('created_at')->get();
 
         return view('admin.news.index')->with([
-            'news' => $news
+            'news' => $news,
         ]);
     }
 
@@ -31,7 +31,7 @@ class NewsController extends Controller
      */
     public function myNews()
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -41,7 +41,7 @@ class NewsController extends Controller
         $news = News::where('created_by', $user->id)->orderByDesc('created_at')->get();
 
         return view('admin.news.my-index')->with([
-            'news' => $news
+            'news' => $news,
         ]);
     }
 
@@ -50,7 +50,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -62,7 +62,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -80,18 +80,16 @@ class NewsController extends Controller
 
         $validated['created_by'] = User::find(1)->id;
 
-
         $news = News::create($validated);
 
-
-        if (!$news) {
+        if (! $news) {
             return back()->with([
-                'error' => 'Failed to create News'
+                'error' => 'Failed to create News',
             ]);
         }
 
         return redirect()->route('news.index')->with([
-            'success' => 'News successfully created.'
+            'success' => 'News successfully created.',
         ]);
     }
 
@@ -105,14 +103,14 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
         $result = News::findOrFail($id);
 
         return view('admin.news.form')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -121,7 +119,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -147,15 +145,14 @@ class NewsController extends Controller
 
         $status = $news->update($validated);
 
-
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to create News'
+                'error' => 'Failed to create News',
             ]);
         }
 
         return redirect()->route('news.index')->with([
-            'success' => 'News successfully created.'
+            'success' => 'News successfully created.',
         ]);
     }
 
@@ -164,7 +161,7 @@ class NewsController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!user_can('news_access')) {
+        if (! user_can('news_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -172,14 +169,14 @@ class NewsController extends Controller
 
         $status = $news->delete();
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to delete News'
+                'error' => 'Failed to delete News',
             ]);
         }
 
         return redirect()->route('news.index')->with([
-            'success' => 'News successfully deleted.'
+            'success' => 'News successfully deleted.',
         ]);
     }
 }

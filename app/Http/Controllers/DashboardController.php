@@ -27,7 +27,7 @@ class DashboardController extends Controller
             'roles' => $roles,
             'news' => $news,
             'galleries' => $galleries,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 

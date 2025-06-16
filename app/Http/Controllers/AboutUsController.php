@@ -14,14 +14,14 @@ class AboutUsController extends Controller
     public function index()
     {
 
-        if(!user_can('about_us_access')) {
+        if (! user_can('about_us_access')) {
             return redirect()->route('dashboard');
         }
 
         $aboutUs = AboutUs::orderBy('updated_at', 'asc')->get();
 
         return view('admin.about-us.index')->with([
-            'aboutUs' => $aboutUs
+            'aboutUs' => $aboutUs,
         ]);
     }
 
@@ -55,15 +55,14 @@ class AboutUsController extends Controller
     public function edit(string $id)
     {
 
-         if(!user_can('about_us_access')) {
+        if (! user_can('about_us_access')) {
             return redirect()->route('dashboard');
         }
-
 
         $result = AboutUs::findOrFail($id);
 
         return view('admin.about-us.form')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -72,7 +71,7 @@ class AboutUsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         if(!user_can('about_us_access')) {
+        if (! user_can('about_us_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -85,7 +84,6 @@ class AboutUsController extends Controller
             'photo_left' => 'nullable|file|mimes:jpg,png,jpeg',
             'photo_right' => 'nullable|file|mimes:jpg,png,jpeg',
         ]);
-
 
         if ($request->has('delete_photo_left') && $aboutUs->photo_left) {
             Storage::disk('public')->delete($aboutUs->photo_left);
@@ -122,14 +120,14 @@ class AboutUsController extends Controller
 
         $status = $aboutUs->update($validated);
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => "Failed to update  About Us ID $aboutUs->id"
+                'error' => "Failed to update  About Us ID $aboutUs->id",
             ]);
         }
 
         return redirect()->route('about-us.index')->with([
-            'success' => "About Us ID $aboutUs->id Successfully updated."
+            'success' => "About Us ID $aboutUs->id Successfully updated.",
         ]);
     }
 

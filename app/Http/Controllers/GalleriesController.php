@@ -16,14 +16,14 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        if (!user_can('gallery_access')) {
+        if (! user_can('gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $galleries = Gallery::orderByDesc('created_at')->get();
 
         return view('admin.galleries.index')->with([
-            'galleries' => $galleries
+            'galleries' => $galleries,
         ]);
     }
 
@@ -32,7 +32,7 @@ class GalleriesController extends Controller
      */
     public function create()
     {
-        if (!user_can('gallery_access')) {
+        if (! user_can('gallery_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -44,14 +44,13 @@ class GalleriesController extends Controller
      */
     public function store(Request $request)
     {
-        if (!user_can('gallery_access')) {
+        if (! user_can('gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048'
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
         ]);
-
 
         if ($request->file('photo')) {
             $validated['photo'] = $request->file('photo')->store('galleries', 'public');
@@ -62,15 +61,14 @@ class GalleriesController extends Controller
 
         $gallery = Gallery::create($validated);
 
-
-        if (!$gallery) {
+        if (! $gallery) {
             return back()->with([
-                'error' => 'Failed to create gallery.'
+                'error' => 'Failed to create gallery.',
             ]);
         }
 
         return redirect()->route('galleries.index')->with([
-            'success' => 'Gallery Successfully created.'
+            'success' => 'Gallery Successfully created.',
         ]);
     }
 
@@ -87,15 +85,14 @@ class GalleriesController extends Controller
      */
     public function edit(string $id)
     {
-        if (!user_can('gallery_access')) {
+        if (! user_can('gallery_access')) {
             return redirect()->route('dashboard');
         }
-
 
         $result = Gallery::findOrFail($id);
 
         return view('admin.galleries.form')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -104,14 +101,14 @@ class GalleriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!user_can('gallery_access')) {
+        if (! user_can('gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $gallery = Gallery::findOrFail($id);
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048'
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         if ($request->file('photo')) {
@@ -123,17 +120,16 @@ class GalleriesController extends Controller
             $validated['photo'] = $request->file('photo')->store('galleries', 'public');
         }
 
-
         $status = $gallery->update($validated);
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to update gallery.'
+                'error' => 'Failed to update gallery.',
             ]);
         }
 
         return redirect()->route('galleries.index')->with([
-            'success' => 'Gallery successfully updated.'
+            'success' => 'Gallery successfully updated.',
         ]);
     }
 
@@ -142,7 +138,7 @@ class GalleriesController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!user_can('gallery_access')) {
+        if (! user_can('gallery_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -150,20 +146,19 @@ class GalleriesController extends Controller
 
         $status = $gallery->delete();
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to delete gallery.'
+                'error' => 'Failed to delete gallery.',
             ]);
         }
 
         return redirect()->route('galleries.index')->with([
-            'success' => 'Gallery successfully deleted'
+            'success' => 'Gallery successfully deleted',
         ]);
     }
 
-
     // // // //
-    // SLIDER 
+    // SLIDER
     // // // //
 
     /**
@@ -171,14 +166,14 @@ class GalleriesController extends Controller
      */
     public function sliderIndex()
     {
-        if (!user_can('slider_gallery_access')) {
+        if (! user_can('slider_gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $galleries = SliderGallery::orderByDesc('created_at')->get();
 
         return view('admin.galleries.slider-index')->with([
-            'galleries' => $galleries
+            'galleries' => $galleries,
         ]);
     }
 
@@ -187,7 +182,7 @@ class GalleriesController extends Controller
      */
     public function sliderCreate()
     {
-        if (!user_can('slider_gallery_access')) {
+        if (! user_can('slider_gallery_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -199,14 +194,13 @@ class GalleriesController extends Controller
      */
     public function sliderStore(Request $request)
     {
-        if (!user_can('slider_gallery_access')) {
+        if (! user_can('slider_gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048'
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
         ]);
-
 
         if ($request->file('photo')) {
             $validated['photo'] = $request->file('photo')->store('galleries', 'public');
@@ -217,15 +211,14 @@ class GalleriesController extends Controller
 
         $gallery = SliderGallery::create($validated);
 
-
-        if (!$gallery) {
+        if (! $gallery) {
             return back()->with([
-                'error' => 'Failed to create gallery.'
+                'error' => 'Failed to create gallery.',
             ]);
         }
 
         return redirect()->route('galleries.slider.index')->with([
-            'success' => 'Gallery Successfully created.'
+            'success' => 'Gallery Successfully created.',
         ]);
     }
 
@@ -242,14 +235,14 @@ class GalleriesController extends Controller
      */
     public function sliderEdit(string $id)
     {
-        if (!user_can('slider_gallery_access')) {
+        if (! user_can('slider_gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $result = SliderGallery::findOrFail($id);
 
         return view('admin.galleries.slider-form')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -258,14 +251,14 @@ class GalleriesController extends Controller
      */
     public function sliderUpdate(Request $request, string $id)
     {
-        if (!user_can('slider_gallery_access')) {
+        if (! user_can('slider_gallery_access')) {
             return redirect()->route('dashboard');
         }
 
         $gallery = SliderGallery::findOrFail($id);
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048'
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         if ($request->file('photo')) {
@@ -277,17 +270,16 @@ class GalleriesController extends Controller
             $validated['photo'] = $request->file('photo')->store('galleries', 'public');
         }
 
-
         $status = $gallery->update($validated);
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to update gallery.'
+                'error' => 'Failed to update gallery.',
             ]);
         }
 
         return redirect()->route('galleries.index')->with([
-            'success' => 'Gallery successfully updated.'
+            'success' => 'Gallery successfully updated.',
         ]);
     }
 
@@ -297,7 +289,7 @@ class GalleriesController extends Controller
     public function sliderDestroy(string $id)
     {
 
-        if (!user_can('slider_gallery_access')) {
+        if (! user_can('slider_gallery_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -305,14 +297,14 @@ class GalleriesController extends Controller
 
         $status = $gallery->delete();
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to delete gallery.'
+                'error' => 'Failed to delete gallery.',
             ]);
         }
 
         return redirect()->route('galleries.index')->with([
-            'success' => 'Gallery successfully deleted'
+            'success' => 'Gallery successfully deleted',
         ]);
     }
 }

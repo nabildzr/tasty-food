@@ -20,7 +20,7 @@ class RoleController extends Controller
         $roles = Role::orderByDesc('created_at')->get();
 
         return view('admin.roles.index')->with([
-            'roles' => $roles
+            'roles' => $roles,
         ]);
     }
 
@@ -56,25 +56,25 @@ class RoleController extends Controller
             'contact_access' => 'boolean',
             'business_information_access' => 'boolean',
         ], [
-            'name.required' => 'Name is required.'
+            'name.required' => 'Name is required.',
         ]);
 
-        if ($validated['name'] === "Super Admin") {
+        if ($validated['name'] === 'Super Admin') {
             return back()->with([
-                'error' => 'Cannot create Role with name Super Admin'
+                'error' => 'Cannot create Role with name Super Admin',
             ]);
         }
 
         $role = Role::create($validated);
 
-        if (!$role) {
+        if (! $role) {
             return back()->with([
-                'error' => 'Failed to create Role.'
+                'error' => 'Failed to create Role.',
             ]);
         }
 
         return redirect()->route('roles.index')->with([
-            'success' => 'Role Successfully Created.'
+            'success' => 'Role Successfully Created.',
         ]);
     }
 
@@ -93,15 +93,14 @@ class RoleController extends Controller
             return redirect()->route('dashboard');
         }
 
-
         $result = Role::findOrFail($id);
 
-        if ($result->name === "Super Admin") {
+        if ($result->name === 'Super Admin') {
             return redirect()->route('roles.index');
         }
 
         return view('admin.roles.form')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -114,15 +113,14 @@ class RoleController extends Controller
             return redirect()->route('dashboard');
         }
 
-
         $role = Role::findOrFail($id);
 
-        if ($role->name === "Super Admin") {
+        if ($role->name === 'Super Admin') {
             return redirect()->route('roles.index');
         }
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:roles,name,' . $role->id,
+            'name' => 'required|string|max:255|unique:roles,name,'.$role->id,
             'news_access' => 'boolean',
             'menu_access' => 'boolean',
             'about_us_access' => 'boolean',
@@ -135,14 +133,14 @@ class RoleController extends Controller
 
         $role = $role->update($validated);
 
-        if (!$role) {
+        if (! $role) {
             return back()->with([
-                'error' => 'Failed to update Role.'
+                'error' => 'Failed to update Role.',
             ]);
         }
 
         return redirect()->route('roles.index')->with([
-            'success' => 'Role Successfully Updated.'
+            'success' => 'Role Successfully Updated.',
         ]);
     }
 
@@ -159,20 +157,20 @@ class RoleController extends Controller
 
         if ($role->name === 'Super Admin') {
             return back()->with([
-                'error' => 'Super Admin cannot be deleted'
+                'error' => 'Super Admin cannot be deleted',
             ]);
         }
 
         $role->delete();
 
-        if (!$role) {
+        if (! $role) {
             return back()->with([
-                'error' => 'Failed to delete Role.'
+                'error' => 'Failed to delete Role.',
             ]);
         }
 
         return redirect()->route('roles.index')->with([
-            'success' => 'Role Successfully Deleted.'
+            'success' => 'Role Successfully Deleted.',
         ]);
     }
 }

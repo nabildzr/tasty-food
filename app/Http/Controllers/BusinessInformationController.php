@@ -12,24 +12,21 @@ class BusinessInformationController extends Controller
      */
     public function index()
     {
-         if(!user_can('business_information_access')) {
+        if (! user_can('business_information_access')) {
             return redirect()->route('dashboard');
         }
 
         $businessInformation = BusinessInformation::first();
 
         return view('admin.business-information.form')->with([
-            'businessInformation' => $businessInformation
+            'businessInformation' => $businessInformation,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -60,11 +57,11 @@ class BusinessInformationController extends Controller
      */
     public function update(Request $request)
     {
-         if(!user_can('business_information_access')) {
+        if (! user_can('business_information_access')) {
             return redirect()->route('dashboard');
         }
 
-         $businessInformation = BusinessInformation::first();
+        $businessInformation = BusinessInformation::first();
 
         $validated = $request->validate([
             'phone' => 'required|string|max:20',
@@ -76,14 +73,14 @@ class BusinessInformationController extends Controller
 
         $businessInformation->update($validated);
 
-        if (!$businessInformation) {
+        if (! $businessInformation) {
             return back()->with([
-            'error' => 'Failed to update business information.'
+                'error' => 'Failed to update business information.',
             ]);
         }
 
         return redirect()->route('business-information.index')->with([
-            'success' => 'Business information updated successfully.'
+            'success' => 'Business information updated successfully.',
         ]);
     }
 

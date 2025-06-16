@@ -20,7 +20,7 @@ class HomeController extends Controller
         return view('client.home.index')->with([
             'galleries' => $galleries,
             'news' => $news,
-            'newlyNews' => $newlyNews
+            'newlyNews' => $newlyNews,
         ]);
     }
 

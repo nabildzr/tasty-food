@@ -9,7 +9,6 @@ class News extends Model
 {
     use SoftDeletes;
 
-
     protected $fillable = [
         'banner',
         'slug',
@@ -18,7 +17,7 @@ class News extends Model
         'created_by',
     ];
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
     }

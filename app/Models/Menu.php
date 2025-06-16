@@ -10,10 +10,11 @@ class Menu extends Model
         'name',
         'description',
         'created_by',
-        'photo'
+        'photo',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'created_by');
     }
 }

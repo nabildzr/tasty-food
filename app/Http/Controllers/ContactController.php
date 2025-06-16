@@ -12,14 +12,14 @@ class ContactController extends Controller
      */
     public function index()
     {
-        if (!user_can('contact_access')) {
+        if (! user_can('contact_access')) {
             return redirect()->route('dashboard');
         }
 
         $contacts = Contact::orderByDesc('created_at')->get();
 
         return view('admin.contacts.index')->with([
-            'contacts' => $contacts
+            'contacts' => $contacts,
         ]);
     }
 
@@ -36,7 +36,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        if (!user_can('contact_access')) {
+        if (! user_can('contact_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -49,9 +49,9 @@ class ContactController extends Controller
 
         $contact = Contact::create($validated);
 
-        if (!$contact) {
+        if (! $contact) {
             return back()->with([
-                'error' => 'Failed to contacts.'
+                'error' => 'Failed to contacts.',
             ]);
         }
 
@@ -64,14 +64,14 @@ class ContactController extends Controller
     public function show(string $id)
     {
 
-        if (!user_can('contact_access')) {
+        if (! user_can('contact_access')) {
             return redirect()->route('dashboard');
         }
 
         $result = Contact::findOrFail($id);
 
         return view('admin.contacts.show')->with([
-            'result' => $result
+            'result' => $result,
         ]);
     }
 
@@ -102,7 +102,7 @@ class ContactController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!user_can('contact_access')) {
+        if (! user_can('contact_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -110,14 +110,14 @@ class ContactController extends Controller
 
         $status = $contact->delete();
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to delete contacts.'
+                'error' => 'Failed to delete contacts.',
             ]);
         }
 
         return redirect()->route('contacts.index')->with([
-            'success' => 'Contact Successfully deleted.'
+            'success' => 'Contact Successfully deleted.',
         ]);
     }
 }

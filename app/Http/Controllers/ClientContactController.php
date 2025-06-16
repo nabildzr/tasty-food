@@ -16,18 +16,14 @@ class ClientContactController extends Controller
         $businessInformation = BusinessInformation::all()->first();
 
         return view('client.contact.index')->with([
-            'businessInformation' => $businessInformation
+            'businessInformation' => $businessInformation,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
-
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -43,7 +39,7 @@ class ClientContactController extends Controller
 
         $contact = Contact::create($validated);
 
-        if (!$contact) {
+        if (! $contact) {
             return back()->with('error', 'Gagal mengirim pesan Anda. Silakan coba lagi.');
         }
 

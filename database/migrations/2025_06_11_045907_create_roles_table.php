@@ -25,9 +25,8 @@ return new class extends Migration
             $table->boolean('contact_access')->default(false);
             $table->boolean('business_information_access')->default(false);
             $table->timestamps();
-            
-        });
 
+        });
 
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();

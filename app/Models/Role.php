@@ -10,7 +10,7 @@ class Role extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
+        'name',
         'news_access',
         'menu_access',
         'about_us_access',
@@ -18,10 +18,11 @@ class Role extends Model
         'slider_gallery_access',
         'gallery_access',
         'contact_access',
-        'business_information_access'
+        'business_information_access',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->hasMany(User::class);
     }
 }

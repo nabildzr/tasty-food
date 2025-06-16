@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (!user_can('users_access')) {
+        if (! user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -22,7 +22,7 @@ class UsersController extends Controller
         $users = User::OrderByDesc('created_at')->get();
 
         return view('admin.users.index')->with([
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -31,14 +31,14 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (!user_can('users_access')) {
+        if (! user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
         $roles = Role::where('id', '!=', 1)->orderByDesc('created_at')->get();
 
         return view('admin.users.form')->with([
-            'roles' => $roles
+            'roles' => $roles,
         ]);
     }
 
@@ -47,7 +47,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        if (!user_can('users_access')) {
+        if (! user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -55,12 +55,12 @@ class UsersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|unique:users,email',
             'password' => 'required|string',
-            'role_id' => 'required|exists:roles,id'
+            'role_id' => 'required|exists:roles,id',
         ]);
 
         if ($validated['role_id'] == 1) {
             return back()->with([
-                'error' => 'Failed to create user. Cannot add Super Admin Roles.'
+                'error' => 'Failed to create user. Cannot add Super Admin Roles.',
             ]);
         }
 
@@ -68,14 +68,14 @@ class UsersController extends Controller
 
         $user = User::create($validated);
 
-        if (!$user) {
+        if (! $user) {
             return back()->with([
-                'error' => 'Failed to create User'
+                'error' => 'Failed to create User',
             ]);
         }
 
         return redirect()->route('users.index')->with([
-            'success' => 'User Successfully Created.'
+            'success' => 'User Successfully Created.',
         ]);
     }
 
@@ -84,11 +84,11 @@ class UsersController extends Controller
      */
     public function show()
     {
-      
+
         $user = Auth::user();
 
         return view('admin.users.show')->with([
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -97,14 +97,11 @@ class UsersController extends Controller
      */
     public function edit(string $id)
     {
-        if (!user_can('users_access')) {
+        if (! user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
-
-
         $result = User::findOrFail($id);
-
 
         if ($result->role->id == 1) {
             return redirect()->route('users.index');
@@ -114,7 +111,7 @@ class UsersController extends Controller
 
         return view('admin.users.form')->with([
             'result' => $result,
-            'roles' => $roles
+            'roles' => $roles,
         ]);
     }
 
@@ -123,7 +120,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!user_can('users_access')) {
+        if (! user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -131,14 +128,14 @@ class UsersController extends Controller
 
         if ($user->role->id == 1) {
             return back()->with([
-                'error' => 'Failed to update user. Cannot update Super Admin.'
+                'error' => 'Failed to update user. Cannot update Super Admin.',
             ]);
         }
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|unique:users,email,' . $user->id,
-            'role_id' => 'required|exists:roles,id'
+            'email' => 'required|unique:users,email,'.$user->id,
+            'role_id' => 'required|exists:roles,id',
         ]);
 
         if ($validated['role_id'] !== $user->role->id) {
@@ -147,15 +144,14 @@ class UsersController extends Controller
 
         $status = $user->update($validated);
 
-
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => 'Failed to update User'
+                'error' => 'Failed to update User',
             ]);
         }
 
         return redirect()->route('users.index')->with([
-            'success' => 'User Successfully Updated.'
+            'success' => 'User Successfully Updated.',
         ]);
     }
 
@@ -164,7 +160,7 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!user_can('users_access')) {
+        if (! user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -172,61 +168,56 @@ class UsersController extends Controller
 
         if ($user->role->id == 1) {
             return back()->with([
-                'error' => 'Failed to deleting user. Cannot delete Super Admin.'
+                'error' => 'Failed to deleting user. Cannot delete Super Admin.',
             ]);
         }
 
         $user->delete($id);
 
-        if (!$user) {
+        if (! $user) {
             return redirect()->route('users.index')->with([
-                'success' => 'User Successfully Deleted.'
+                'success' => 'User Successfully Deleted.',
             ]);
         }
     }
-
-
 
     // profile
 
     public function editProfile()
     {
-       
 
         $user = Auth::user();
         $roles = Role::orderByDesc('created_at')->get();
 
-
         return view('admin.users.show-form')->with([
             'user' => $user,
-            'roles' => $roles
+            'roles' => $roles,
         ]);
     }
 
     public function updateProfile(Request $request)
     {
-       
 
         $userId = Auth::user()->id;
         $user = User::findOrFail($userId);
 
         $validated = $request->validate([
             'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|string|email|unique:users,email,' . Auth::id(),
+            'email' => 'sometimes|string|email|unique:users,email,'.Auth::id(),
             'new_password' => 'nullable|string|min:6',
             'role_id' => 'sometimes|exists:roles,id',
         ]);
 
         $status = $user->update($validated);
 
-        if (!$status) {
+        if (! $status) {
             return back()->with([
-                'error' => "Failed to updating Profile."
+                'error' => 'Failed to updating Profile.',
             ]);
         }
 
         return redirect()->route('user.show')->with([
-            'success' => 'Profile Successfully updated.'
+            'success' => 'Profile Successfully updated.',
         ]);
     }
 }

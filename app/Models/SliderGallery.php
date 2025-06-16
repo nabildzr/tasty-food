@@ -11,7 +11,7 @@ class SliderGallery extends Model
 
     protected $fillable = [
         'photo',
-        'created_by'
+        'created_by',
     ];
 
     public function user()

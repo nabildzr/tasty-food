@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\AboutUs;
+use Illuminate\Http\Request;
 
 class ClientAboutUsController extends Controller
 {
@@ -12,11 +12,10 @@ class ClientAboutUsController extends Controller
      */
     public function index()
     {
-        
+
         $top = AboutUs::where('position', 'top')->first();
         $middle = AboutUs::where('position', 'middle')->first();
         $bottom = AboutUs::where('position', 'bottom')->first();
-
 
         return view('client.about.index')->with([
             'top' => $top,

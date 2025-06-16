@@ -15,9 +15,8 @@ class ForgotPasswordController extends Controller
     public function sendEmail(Request $request)
     {
 
-
         $request->validate([
-            'email' => 'required|email|exists:users,email'
+            'email' => 'required|email|exists:users,email',
         ]);
 
         $status = Password::sendResetLink(
@@ -26,10 +25,10 @@ class ForgotPasswordController extends Controller
 
         return $status === Password::RESET_LINK_SENT ?
             back()->with([
-                'status' =>  __($status)
+                'status' => __($status),
             ])
             : back()->withErrors([
-                'email' => __($status)
+                'email' => __($status),
             ]);
     }
 }

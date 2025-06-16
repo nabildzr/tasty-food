@@ -17,12 +17,12 @@ class AboutUsFactory extends Factory
     public function definition(): array
     {
         return [
-               'position' => fake()->randomElement(['top', 'middle', 'bottom']),
+            'position' => fake()->randomElement(['top', 'middle', 'bottom']),
             'photo_left' => fake()->imageUrl(),
             'photo_right' => fake()->optional()->imageUrl(),
             'content' => fake()->paragraphs(3, true),
             'title' => fake()->sentence(),
-           
+
         ];
     }
 }

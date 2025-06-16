@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('position', [
                 'top',
                 'middle',
-                'bottom'
+                'bottom',
             ]);
             $table->string('photo_left')->nullable();
             $table->string('photo_right')->nullable();

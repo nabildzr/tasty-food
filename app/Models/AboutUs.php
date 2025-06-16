@@ -16,6 +16,4 @@ class AboutUs extends Model
         'photo_left',
         'photo_right',
     ];
-
-
 }

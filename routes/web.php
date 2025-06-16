@@ -27,7 +27,7 @@ Route::prefix('/')->group(function () {
     Route::get('/news', [ClientNewsController::class, 'index'])->name('client.news');
     Route::get('/news/{id}', [ClientNewsController::class, 'show'])->name('client.news.show');
     Route::get('/about-us', [ClientAboutUsController::class, 'index'])->name('client.about-us');
-    
+
     Route::middleware(['guest'])->group(function () {
         Route::get('/login', [AuthController::class, 'index'])->name('login');
         Route::post('/login', [AuthController::class, 'actionLogin'])->name('user.login');
@@ -38,14 +38,11 @@ Route::prefix('/')->group(function () {
         Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
     });
 
-}); 
-
+});
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'actionLogout'])->name('user.logout');
-
-
 
     Route::prefix('business-information')->middleware(['auth'])->controller(RoleController::class)->group(function () {
         Route::get('/', 'index')->name('business-information.index');
@@ -59,7 +56,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('business-information.delete');
     });
 
-
     Route::prefix('about-us')->middleware(['auth'])->controller(AboutUsController::class)->group(function () {
         Route::get('/', 'index')->name('about-us.index');
 
@@ -68,7 +64,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         Route::delete('/delete/{id}', 'destroy')->name('about-us.delete');
     });
-
 
     Route::prefix('roles')->middleware(['auth'])->controller(RoleController::class)->group(function () {
         Route::get('/', 'index')->name('roles.index');
@@ -82,7 +77,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('roles.delete');
     });
 
-
     Route::prefix('user')->middleware(['auth'])->controller(UsersController::class)->group(function () {
         Route::get('/profile', 'show')->name('user.show');
 
@@ -93,9 +87,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('users')->middleware(['auth'])->controller(UsersController::class)->group(function () {
         Route::get('/', 'index')->name('users.index');
 
-
-
-
         Route::get('/create', 'create')->name('users.create');
         Route::post('/create', 'store')->name('users.store');
 
@@ -104,7 +95,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         Route::delete('/delete/{id}', 'destroy')->name('users.delete');
     });
-
 
     Route::prefix('menus')->middleware(['auth'])->controller(MenuController::class)->group(function () {
         Route::get('/', 'index')->name('menus.index');
@@ -117,7 +107,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         Route::delete('/delete/{id}', 'destroy')->name('menus.delete');
     });
-
 
     Route::prefix('news')->middleware(['auth'])->controller(NewsController::class)->group(function () {
         Route::get('/', 'index')->name('news.index');
@@ -132,24 +121,19 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('news.delete');
     });
 
-
     Route::prefix('business-information')->middleware(['auth'])->controller(BusinessInformationController::class)->group(function () {
         Route::get('/', 'index')->name('business-information.index');
         Route::put('/', 'update')->name('business-information.update');
     });
 
-
-
     Route::prefix('contacts')->middleware(['auth'])->controller(ContactController::class)->group(function () {
         Route::get('/', 'index')->name('contacts.index');
-
 
         Route::get('/one', 'showing')->name('contacts.showing');
         Route::get('/{id}', 'show')->name('contacts.show');
 
         Route::delete('/delete/{id}', 'destroy')->name('contacts.delete');
     });
-
 
     Route::prefix('galleries')->middleware(['auth'])->controller(GalleriesController::class)->group(function () {
         Route::get('/', 'index')->name('galleries.index');
