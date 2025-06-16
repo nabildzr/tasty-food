@@ -17,7 +17,7 @@ class MultiUser
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check()) {
-            return redirect('/dashboard');
+            return redirect('admin');
         }
         
 

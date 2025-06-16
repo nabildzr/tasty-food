@@ -19218,8 +19218,18 @@ body {
   height: 3.75rem;
   width: 3.75rem;
 }
+
 .avatar-xxl .avatar-img {
   height: 3.75rem;
+}
+
+.avatar-profile {
+  height: 5rem;
+  width: 5rem;
+}
+
+.avatar-profile .avatar-img {
+  height: 5rem;
 }
 
 .avatar-busy::before,

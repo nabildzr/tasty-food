@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -12,9 +13,13 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role->name !== 'Super Admin') {
+            return redirect()->route('dashboard');
+        }
+
         $roles = Role::orderByDesc('created_at')->get();
 
-        return view('roles.index')->with([
+        return view('admin.roles.index')->with([
             'roles' => $roles
         ]);
     }
@@ -24,7 +29,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.form');
+        if (Auth::user()->role->name !== 'Super Admin') {
+            return redirect()->route('dashboard');
+        }
+
+        return view('admin.roles.form');
     }
 
     /**
@@ -32,12 +41,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role->name !== 'Super Admin') {
+            return redirect()->route('dashboard');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:roles,name',
             'news_access' => 'boolean',
             'menu_access' => 'boolean',
             'about_us_access' => 'boolean',
-            'about_us_gallery_access' => 'boolean',
             'users_access' => 'boolean',
             'slider_gallery_access' => 'boolean',
             'gallery_access' => 'boolean',
@@ -46,6 +58,12 @@ class RoleController extends Controller
         ], [
             'name.required' => 'Name is required.'
         ]);
+
+        if ($validated['name'] === "Super Admin") {
+            return back()->with([
+                'error' => 'Cannot create Role with name Super Admin'
+            ]);
+        }
 
         $role = Role::create($validated);
 
@@ -70,8 +88,19 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
+
+        if (Auth::user()->role->name !== 'Super Admin') {
+            return redirect()->route('dashboard');
+        }
+
+
         $result = Role::findOrFail($id);
-        return view('roles.form')->with([
+
+        if ($result->name === "Super Admin") {
+            return redirect()->route('roles.index');
+        }
+
+        return view('admin.roles.form')->with([
             'result' => $result
         ]);
     }
@@ -81,15 +110,22 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (Auth::user()->role->name !== 'Super Admin') {
+            return redirect()->route('dashboard');
+        }
+
 
         $role = Role::findOrFail($id);
+
+        if ($role->name === "Super Admin") {
+            return redirect()->route('roles.index');
+        }
 
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:roles,name,' . $role->id,
             'news_access' => 'boolean',
             'menu_access' => 'boolean',
             'about_us_access' => 'boolean',
-            'about_us_gallery_access' => 'boolean',
             'users_access' => 'boolean',
             'slider_gallery_access' => 'boolean',
             'gallery_access' => 'boolean',
@@ -115,7 +151,17 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
+        if (Auth::user()->role->name !== 'Super Admin') {
+            return redirect()->route('dashboard');
+        }
+
         $role = Role::findOrFail($id);
+
+        if ($role->name === 'Super Admin') {
+            return back()->with([
+                'error' => 'Super Admin cannot be deleted'
+            ]);
+        }
 
         $role->delete();
 

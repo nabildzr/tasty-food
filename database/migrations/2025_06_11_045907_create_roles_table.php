@@ -17,8 +17,8 @@ return new class extends Migration
             $table->boolean('news_access')->default(false);
             $table->boolean('menu_access')->default(false);
             $table->boolean('about_us_access')->default(false);
-            $table->boolean('about_us_gallery_access')->default
-            (false);
+            // $table->boolean('about_us_gallery_access')->default
+            // (false);
             $table->boolean('users_access')->default(false);
             $table->boolean('slider_gallery_access')->default(false);
             $table->boolean('gallery_access')->default(false);

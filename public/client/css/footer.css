@@ -1,0 +1,161 @@
+
+
+
+
+.footer {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 60px 0 20px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.footer-section p {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #ffffff;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #cccccc;
+  font-size: 0.95rem;
+}
+
+.contact-item .icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  fill: #cccccc;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.social-link.facebook {
+  background-color: #3b5998;
+}
+
+.social-link.twitter {
+  background-color: #1da1f2;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 968px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 568px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer {
+    padding: 40px 0 20px 0;
+  }
+
+  .footer-container {
+    padding: 0 15px;
+  }
+
+  .footer-section h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Icons using CSS shapes */
+.email-icon::before {
+  content: "✉";
+  font-size: 16px;
+}
+
+.phone-icon::before {
+  content: "📞";
+  font-size: 16px;
+}
+
+.location-icon::before {
+  content: "📍";
+  font-size: 16px;
+}
+
+.facebook-icon::before {
+  content: "f";
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.twitter-icon::before {
+  content: "𝕏";
+  font-family: Arial, sans-serif;
+}

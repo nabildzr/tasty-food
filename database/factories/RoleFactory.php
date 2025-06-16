@@ -21,7 +21,6 @@ class RoleFactory extends Factory
             'news_access' => fake()->boolean(),
             'menu_access' => fake()->boolean(),
             'about_us_access' => fake()->boolean(),
-            'about_us_gallery_access' => fake()->boolean(),
             'users_access' => fake()->boolean(),
             'slider_gallery_access' => fake()->boolean(),
             'gallery_access' => fake()->boolean(),

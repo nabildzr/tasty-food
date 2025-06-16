@@ -15,9 +15,13 @@ class NewsController extends Controller
      */
     public function index()
     {
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $news = News::orderByDesc('created_at')->get();
 
-        return view('news.index')->with([
+        return view('admin.news.index')->with([
             'news' => $news
         ]);
     }
@@ -27,12 +31,16 @@ class NewsController extends Controller
      */
     public function myNews()
     {
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
         // $user = Auth::user()->id;
         $user = User::find(1);
 
         $news = News::where('created_by', $user->id)->orderByDesc('created_at')->get();
 
-        return view('news.my-index')->with([
+        return view('admin.news.my-index')->with([
             'news' => $news
         ]);
     }
@@ -42,7 +50,11 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.form');
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('admin.news.form');
     }
 
     /**
@@ -50,6 +62,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $validated = $request->validate([
             'banner' => 'file|mimes:png,jpg,jpeg|max:2048',
             'title' => 'required|string',
@@ -89,9 +105,13 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $result = News::findOrFail($id);
 
-        return view('news.form')->with([
+        return view('admin.news.form')->with([
             'result' => $result
         ]);
     }
@@ -101,6 +121,10 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $news = News::findOrFail($id);
 
         $validated = $request->validate([
@@ -112,9 +136,9 @@ class NewsController extends Controller
         // $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['title']));
 
-        if($request->file('banner')) {
+        if ($request->file('banner')) {
 
-            if($news->banner) {
+            if ($news->banner) {
                 Storage::disk('public')->delete($news->banner);
             }
 
@@ -140,6 +164,10 @@ class NewsController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!user_can('news_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $news = News::findOrFail($id);
 
         $status = $news->delete();

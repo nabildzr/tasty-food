@@ -10,11 +10,10 @@ class Role extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name', 
         'news_access',
         'menu_access',
         'about_us_access',
-        'about_us_gallery_access',
         'users_access',
         'slider_gallery_access',
         'gallery_access',

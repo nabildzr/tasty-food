@@ -21,6 +21,6 @@ class script extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.script');
+        return view('admin.components.script');
     }
 }

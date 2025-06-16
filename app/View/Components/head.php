@@ -21,6 +21,6 @@ class head extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.head');
+        return view('admin.components.head');
     }
 }

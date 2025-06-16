@@ -16,9 +16,13 @@ class GalleriesController extends Controller
      */
     public function index()
     {
+        if (!user_can('gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $galleries = Gallery::orderByDesc('created_at')->get();
 
-        return view('galleries.index')->with([
+        return view('admin.galleries.index')->with([
             'galleries' => $galleries
         ]);
     }
@@ -28,7 +32,11 @@ class GalleriesController extends Controller
      */
     public function create()
     {
-        return view('galleries.form');
+        if (!user_can('gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('admin.galleries.form');
     }
 
     /**
@@ -36,6 +44,10 @@ class GalleriesController extends Controller
      */
     public function store(Request $request)
     {
+        if (!user_can('gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $validated = $request->validate([
             'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048'
         ]);
@@ -75,9 +87,14 @@ class GalleriesController extends Controller
      */
     public function edit(string $id)
     {
+        if (!user_can('gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
+
         $result = Gallery::findOrFail($id);
 
-        return view('galleries.form')->with([
+        return view('admin.galleries.form')->with([
             'result' => $result
         ]);
     }
@@ -87,6 +104,10 @@ class GalleriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (!user_can('gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $gallery = Gallery::findOrFail($id);
 
         $validated = $request->validate([
@@ -121,6 +142,10 @@ class GalleriesController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!user_can('gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $gallery = Gallery::findOrFail($id);
 
         $status = $gallery->delete();
@@ -146,9 +171,13 @@ class GalleriesController extends Controller
      */
     public function sliderIndex()
     {
+        if (!user_can('slider_gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $galleries = SliderGallery::orderByDesc('created_at')->get();
 
-        return view('galleries.slider-index')->with([
+        return view('admin.galleries.slider-index')->with([
             'galleries' => $galleries
         ]);
     }
@@ -158,7 +187,11 @@ class GalleriesController extends Controller
      */
     public function sliderCreate()
     {
-        return view('galleries.slider-form');
+        if (!user_can('slider_gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('admin.galleries.slider-form');
     }
 
     /**
@@ -166,6 +199,10 @@ class GalleriesController extends Controller
      */
     public function sliderStore(Request $request)
     {
+        if (!user_can('slider_gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $validated = $request->validate([
             'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048'
         ]);
@@ -187,7 +224,7 @@ class GalleriesController extends Controller
             ]);
         }
 
-        return redirect()->route('galleries.index')->with([
+        return redirect()->route('galleries.slider.index')->with([
             'success' => 'Gallery Successfully created.'
         ]);
     }
@@ -205,9 +242,13 @@ class GalleriesController extends Controller
      */
     public function sliderEdit(string $id)
     {
+        if (!user_can('slider_gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $result = SliderGallery::findOrFail($id);
 
-        return view('galleries.form')->with([
+        return view('admin.galleries.slider-form')->with([
             'result' => $result
         ]);
     }
@@ -217,6 +258,10 @@ class GalleriesController extends Controller
      */
     public function sliderUpdate(Request $request, string $id)
     {
+        if (!user_can('slider_gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $gallery = SliderGallery::findOrFail($id);
 
         $validated = $request->validate([
@@ -251,6 +296,11 @@ class GalleriesController extends Controller
      */
     public function sliderDestroy(string $id)
     {
+
+        if (!user_can('slider_gallery_access')) {
+            return redirect()->route('dashboard');
+        }
+
         $gallery = SliderGallery::findOrFail($id);
 
         $status = $gallery->delete();

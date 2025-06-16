@@ -15,7 +15,7 @@ class MenuController extends Controller
     {
         $menus = Menu::orderByDesc('created_at')->get();
 
-        return view('menus.index')->with([
+        return view('admin.menus.index')->with([
             'menus' => $menus
         ]);
     }
@@ -25,7 +25,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('menus.form');
+        return view('admin.menus.form');
     }
 
     /**
@@ -75,7 +75,7 @@ class MenuController extends Controller
     {
         $result = Menu::findOrFail($id);
 
-        return view('menus.form')->with([
+        return view('admin.menus.form')->with([
             'result' => $result
         ]);
     }
