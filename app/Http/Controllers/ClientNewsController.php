@@ -16,10 +16,9 @@ class ClientNewsController extends Controller
         // $news = News::orderByDesc('created_at')->get();
         $newlyNews = News::orderByDesc('created_at')->first();
 
-
         return view('client.news.index')->with([
             'news' => $news,
-            'newlyNews' => $newlyNews
+            'newlyNews' => $newlyNews,
         ]);
     }
 

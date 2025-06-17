@@ -76,13 +76,12 @@ class NewsController extends Controller
             $validated['banner'] = $request->file('banner')->store('news_banner', 'public');
         }
 
-
         // Generate unique slug, avoid same slug
         $baseSlug = str_replace(' ', '-', strtolower($request->input('title')));
         $slug = $baseSlug;
         $counter = 2;
         while (News::where('slug', $slug)->exists()) {
-            $slug = $baseSlug . '-' . $counter;
+            $slug = $baseSlug.'-'.$counter;
             $counter++;
             // ex: wadaw-berita-coi is exist then will be wadaw-berita-coi-2
         }

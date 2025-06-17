@@ -29,7 +29,6 @@ class DashboardController extends Controller
             $roles = collect();
         }
 
-
         if (user_can('news_access')) {
             $news = News::all()->count();
         } else {
@@ -49,11 +48,11 @@ class DashboardController extends Controller
         }
 
         return view('admin.dashboard.index')->with([
-            'contactMails' => $contactMails ,
-            'roles' => $roles ,
-            'news' => $news ,
-            'galleries' => $galleries ,
-            'users' => $users ,
+            'contactMails' => $contactMails,
+            'roles' => $roles,
+            'news' => $news,
+            'galleries' => $galleries,
+            'users' => $users,
         ]);
     }
 
