@@ -12,10 +12,14 @@ class ClientNewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderByDesc('created_at')->get();
+        $news = News::orderByDesc('created_at')->skip(1)->take(9999)->get();
+        // $news = News::orderByDesc('created_at')->get();
+        $newlyNews = News::orderByDesc('created_at')->first();
+
 
         return view('client.news.index')->with([
             'news' => $news,
+            'newlyNews' => $newlyNews
         ]);
     }
 
@@ -38,9 +42,9 @@ class ClientNewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $news = News::findOrFail($id);
+        $news = News::where('slug', $slug)->firstOrFail();
 
         return view('client.news.show')->with([
             'news' => $news,

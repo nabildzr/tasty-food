@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Roles')
+@section('title', 'User Profile')
 
 @section('content')
     <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-profile ">
                         <img class="avatar-img img-fluid"
-                            src="https://i.pinimg.com/736x/f5/36/6f/f5366fbdf85e3616bf923f8e9a1db451.jpg">
+                            src="{{ $user->photo ? asset('storage/' . $user->photo) : 'https://i.pinimg.com/736x/1a/a8/d7/1aa8d75f3498784bcd2617b3e3d1e0c4.jpg' }}">
                     </div>
                     <div class="ml-4">
                         <h2 class="mb-0"> {{ $user->name }}</h2>

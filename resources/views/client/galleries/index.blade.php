@@ -17,7 +17,7 @@
 @section('content')
     <main class="">
         @if ($sliderGalleries && $sliderGalleries->count())
-            <div class="container" style="">
+            <div class="container" style="" data-aos="fade-up" data-aos-duration="1600">
                 <div class="swiper mySwiper ">
                     <div class="swiper-wrapper">
                         @foreach ($sliderGalleries as $gallery)
@@ -58,12 +58,19 @@
             <div class="container">
 
                 <div class="gallery-grid">
+                    @php
+                        $duration = 1200;
+                    @endphp
                     @forelse ($galleries as $gallery)
-                        <div class="gallery-item">
+                        <div class="gallery-item" data-aos="fade-up" data-aos-duration="{{ $duration }}">
                             <img src="{{ asset('storage/' . $gallery->photo) }}"
                                 alt="{{ $gallery->title ?? 'Gallery Image' }}"
                                 onload="this.parentElement.classList.add('loaded')">
                         </div>
+
+                        @php
+                            $duration += 500;
+                            @endphp
                     @empty
                         <div style="">
                             <p>Belum ada galeri yang tersedia.</p>

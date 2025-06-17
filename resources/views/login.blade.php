@@ -55,10 +55,10 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="card-footer text-center">
+                                {{-- <div class="card-footer text-center">
                                     <div class="small"><a href="register-basic.html">Need an account? Sign up!</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -69,12 +69,12 @@
             <footer class="footer mt-auto footer-dark">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; Your Website 2020</div>
-                        <div class="col-md-6 text-md-right small">
+                        <div class="col-md-6 small">Copyright &copy; Tasty Food 2023 2020</div>
+                        {{-- <div class="col-md-6 text-md-right small">
                             <a href="#!">Privacy Policy</a>
                             &middot;
                             <a href="#!">Terms &amp; Conditions</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </footer>

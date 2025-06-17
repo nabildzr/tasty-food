@@ -84,7 +84,7 @@
                          href="javascript:void(0);" data-toggle="collapse" data-target="#CollapseNews"
                          aria-expanded="{{ request()->is('admin/news*') ? 'true' : 'false' }}"
                          aria-controls="CollapseNews">
-                         <div class="nav-link-icon"><i data-feather="image"></i></div>
+                         <div class="nav-link-icon"><i data-feather="send"></i></div>
                          News
                          <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                      </a>
@@ -186,7 +186,7 @@
                      <div class="sidenav-menu-heading">Contact</div>
                      <a class="nav-link {{ request()->is('admin/contacts*') ? 'active' : '' }}"
                          href="{{ url('admin/contacts') }}">
-                         <div class="nav-link-icon"><i data-feather="info"></i></div>
+                         <div class="nav-link-icon"><i data-feather="mail"></i></div>
 
                          Contact
                      </a>
@@ -198,7 +198,7 @@
                      <div class="sidenav-menu-heading">Business Information</div>
                      <a class="nav-link {{ request()->is('admin/business-information') ? 'active' : '' }}"
                          href="{{ url('admin/business-information') }}">
-                         <div class="nav-link-icon"><i data-feather="info"></i></div>
+                         <div class="nav-link-icon"><i data-feather="briefcase"></i></div>
 
                          Business Information
                      </a>

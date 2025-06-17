@@ -105,55 +105,72 @@
                         </div>
                     </div>
                 </div>
-                @endif
+            @endif
         </div>
 
         <div class="card mb-4">
-            <div class="card-header">Contact DataTables</div>
-            <div class="card-body">
-                <div class="datatable table-responsive">
-                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Subject</th>
-                                <th>Email</th>
-                                <th>Message</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Subject</th>
-                                <th>Email</th>
-                                <th>Message</th>
-                                <th>Actions</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @forelse ($contactMails as $mail)
-                                <tr>
-                                    <td>{{ $mail->name }}</td>
-                                    <td>{{ $mail->subject }}</td>
-                                    <td>{{ $mail->email }}</td>
-                                    <td>{{ $mail->message }}</td>
-                                    <td>
-                                        <a href="{{ route('contacts.show', $mail->id) }}">
-                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"
-                                                title="Edit"><i data-feather="mail"></i></button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">No contacts mail found.</td>
-                                </tr>
-                            @endforelse
+            <div class="card-header">
 
-                        </tbody>
-                    </table>
-                </div>
+                @if (Auth::user()->role->name == 'Super Admin' || user_can('contacts_access'))
+                    Contact Mails
+                @else
+                    You do not have permission to view more content.
+                @endif
+            </div>
+            <div class="card-body">
+
+                @if (Auth::user()->role->name == 'Super Admin' || user_can('contacts_access'))
+
+                    <div class="datatable table-responsive">
+                        <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Subject</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Subject</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @forelse ($contactMails as $mail)
+                                    <tr>
+                                        <td>{{ $mail->name }}</td>
+                                        <td>{{ $mail->subject }}</td>
+                                        <td>{{ $mail->email }}</td>
+                                        <td>{{ $mail->message }}</td>
+                                        <td>
+                                            <a href="{{ route('contacts.show', $mail->id) }}">
+                                                <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"
+                                                    title="Edit"><i data-feather="mail"></i></button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">No contacts mail found.</td>
+                                    </tr>
+                                @endforelse
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                @else 
+                    <div class="alert alert-warning" role="alert">
+                        See ya!
+                    </div>
+                @endif
+
             </div>
         </div>
 

@@ -67,7 +67,7 @@ class NewsController extends Controller
         }
 
         $validated = $request->validate([
-            'banner' => 'file|mimes:png,jpg,jpeg|max:2048',
+            'banner' => 'file|mimes:png,jpg,jpeg|max:10000',
             'title' => 'required|string',
             'content' => 'required|string',
         ]);
@@ -76,7 +76,18 @@ class NewsController extends Controller
             $validated['banner'] = $request->file('banner')->store('news_banner', 'public');
         }
 
-        $validated['slug'] = str_replace(' ', '-', strtolower($validated['title']));
+
+        // Generate unique slug, avoid same slug
+        $baseSlug = str_replace(' ', '-', strtolower($request->input('title')));
+        $slug = $baseSlug;
+        $counter = 2;
+        while (News::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+            // ex: wadaw-berita-coi is exist then will be wadaw-berita-coi-2
+        }
+
+        $validated['slug'] = $slug;
 
         $validated['created_by'] = User::find(1)->id;
 
@@ -126,7 +137,7 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
 
         $validated = $request->validate([
-            'photo' => 'file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'file|mimes:png,jpg,jpeg|max:10000',
             'title' => 'required|string',
             'content' => 'required|string',
         ]);

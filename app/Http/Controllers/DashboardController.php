@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -16,18 +17,43 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $contactMails = Contact::orderByDesc('created_at')->get();
-        $roles = Role::all()->count();
-        $news = News::all()->count();
-        $users = User::all()->count();
-        $galleries = Gallery::all()->count();
+        if (user_can('contact_access')) {
+            $contactMails = Contact::orderByDesc('created_at')->get();
+        } else {
+            $contactMails = collect();
+        }
+
+        if (Auth::user()->role->name == 'Super Admin') {
+            $roles = Role::all()->count();
+        } else {
+            $roles = collect();
+        }
+
+
+        if (user_can('news_access')) {
+            $news = News::all()->count();
+        } else {
+            $news = collect();
+        }
+
+        if (user_can('users_access')) {
+            $users = User::all()->count();
+        } else {
+            $users = collect();
+        }
+
+        if (user_can('gallery_access')) {
+            $galleries = Gallery::all()->count();
+        } else {
+            $galleries = collect();
+        }
 
         return view('admin.dashboard.index')->with([
-            'contactMails' => $contactMails,
-            'roles' => $roles,
-            'news' => $news,
-            'galleries' => $galleries,
-            'users' => $users,
+            'contactMails' => $contactMails ,
+            'roles' => $roles ,
+            'news' => $news ,
+            'galleries' => $galleries ,
+            'users' => $users ,
         ]);
     }
 

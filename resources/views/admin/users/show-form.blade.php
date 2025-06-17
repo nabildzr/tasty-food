@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title',  'Edit User' )
+@section('title',  'Edit Profile User' )
 
 @section('content')
     <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
@@ -10,10 +10,10 @@
                     <div class="page-header-icon">
                         <i data-feather="edit-3"></i>
                     </div>
-                    <span>{{ 'Edit User' }}</span>
+                    <span>{{ 'Edit Profile User' }}</span>
                 </h1>
                 <div class="page-header-subtitle">
-                    Use this dynamic form to easily edit user data
+                    Use this dynamic form to easily edit your profile data
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div id="default">
                     <div class="card mb-4">
                         <div class="card-header">
-                            {{ "Edit $user->name User" }}
+                            {{ "Edit $user->name Profile" }}
                         </div>
 
                         <div class="mr-4 ml-4 mt-4 mb-0">
@@ -55,19 +55,7 @@
 
 
 
-                                        <div class="form-group">
-                                            <label for="role">Role</label>
-                                            <select name="role_id" class="form-control " id="role">
-                                                <option class="bg-gray-200" disabled>Select Role</option>
-                                                @foreach ($roles as $role)
-                                                    <option value="{{ $role->id }}"
-                                                        {{ old('role_id', isset($user) ? $user->role_id : '') == $role->id ? 'selected' : '' }}>
-                                                        {{ $role->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
+                               
 
                                         <div class="form-group">
                                             <label for="password">Change Password</label>

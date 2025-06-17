@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 html,
@@ -101,6 +104,12 @@ header img {
   color: var(--primary-color);
 }
 
+@media (max-width: 400px) {
+  .title {
+    font-size: 25px;
+  }
+}
+
 .nav {
   display: flex;
 
@@ -118,7 +127,7 @@ header img {
 }
 
 .nav ul li:hover {
-    color:  var(--primary-color);
+  color: var(--primary-color);
 }
 
 /* .active {
@@ -472,6 +481,20 @@ section {
   grid-template-rows: 1fr 1fr;
   gap: 20px;
   height: 100%;
+}
+
+@media (max-width: 1160px) {
+  .small-articles {
+    grid-template-rows: 1fr ;
+    
+    height: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  .small-articles {
+    height: 350px;
+  }
 }
 
 .small-article {

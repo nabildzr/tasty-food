@@ -49,7 +49,7 @@ class GalleriesController extends Controller
         }
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:10000',
         ]);
 
         if ($request->file('photo')) {
@@ -108,7 +108,7 @@ class GalleriesController extends Controller
         $gallery = Gallery::findOrFail($id);
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:10000',
         ]);
 
         if ($request->file('photo')) {
@@ -199,7 +199,7 @@ class GalleriesController extends Controller
         }
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:10000',
         ]);
 
         if ($request->file('photo')) {
@@ -258,7 +258,7 @@ class GalleriesController extends Controller
         $gallery = SliderGallery::findOrFail($id);
 
         $validated = $request->validate([
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:10000',
         ]);
 
         if ($request->file('photo')) {

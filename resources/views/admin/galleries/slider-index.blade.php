@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Galleries')
+@section('title', 'Slider Galleries')
 
 @section('content')
     <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
@@ -60,7 +60,7 @@
                                         @if ($gallery->photo)
                                             <img src="{{ asset('storage/' . $gallery->photo) }}"
                                                 alt="Gallery Preview - {{ $gallery->id }}"
-                                                style="width: 60px; height: 60px; object-fit: cover;">
+                                                style="width: 120px; height: 60px; object-fit: cover;">
                                         @else
                                             <span class="text-muted">No Gallery Photo </span>
                                         @endif
@@ -114,22 +114,7 @@
                 </div>
             </div>
         </div>
-        <div class="card card-icon mb-4">
-            <div class="row no-gutters">
-                <div class="col-auto card-icon-aside bg-primary"><i class="mr-1 text-white-50"
-                        data-feather="alert-triangle"></i></div>
-                <div class="col">
-                    <div class="card-body py-5">
-                        <h5 class="card-title">Third-Party Documentation Available</h5>
-                        <p class="card-text">DataTables is a third party plugin that is used to generate the demo table
-                            above. For more information about how to use DataTables with your project, please visit the
-                            official DataTables documentation.</p>
-                        <a class="btn btn-primary btn-sm" href="https://datatables.net/" target="_blank"><i class="mr-1"
-                                data-feather="external-link"></i>Visit DataTables Docs</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </div>
 @endsection
 

@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
         foreach (['top', 'middle', 'bottom'] as $position) {
             AboutUs::factory()->create([
                 'position' => $position,
-                'photo_left' => fake()->imageUrl(),
-                'photo_right' => fake()->optional()->imageUrl(),
+                'photo_left' => null,
+                'photo_right' => null,
                 'content' => fake()->paragraphs(3, true),
                 'title' => fake()->sentence(),
             ]);

@@ -32,6 +32,7 @@
                         style="min-width: 1200px;">
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>Subject</th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -41,6 +42,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>No.</th>
                                 <th>Subject</th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -49,8 +51,12 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            @php
+                                $counter = 1;
+                            @endphp
                             @forelse ($contacts as $contact)
                                 <tr>
+                                    <td>{{ $counter }}</td>
                                     <td>{{ $contact->subject }}</td>
                                     <td>{{ $contact->name }}</td>
                                     <td>{{ $contact->email }}</td>
@@ -63,6 +69,10 @@
                                         {{-- <button class="btn btn-datatable btn-icon btn-transparent-dark" title="Delete" data-toggle="modal" data-target="#deleteContact{{ $contact->id }}"><i data-feather="trash-2"></i></button> --}}
                                     </td>
                                 </tr>
+
+                                @php
+                                    $counter ++;
+                                @endphp
 
 
                                 <div class="modal fade" id="deleteContact{{ $contact->id }}" tabindex="-1" role="dialog"
@@ -100,22 +110,7 @@
                 </div>
             </div>
         </div>
-        <div class="card card-icon mb-4">
-            <div class="row no-gutters">
-                <div class="col-auto card-icon-aside bg-primary"><i class="mr-1 text-white-50"
-                        data-feather="alert-triangle"></i></div>
-                <div class="col">
-                    <div class="card-body py-5">
-                        <h5 class="card-title">Third-Party Documentation Available</h5>
-                        <p class="card-text">DataTables is a third party plugin that is used to generate the demo table
-                            above. For more information about how to use DataTables with your project, please visit the
-                            official DataTables documentation.</p>
-                        <a class="btn btn-primary btn-sm" href="https://datatables.net/" target="_blank"><i class="mr-1"
-                                data-feather="external-link"></i>Visit DataTables Docs</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+     
     </div>
 @endsection
 

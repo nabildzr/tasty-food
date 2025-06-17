@@ -21,3 +21,27 @@
   color: #333;
   margin-top: 20px;
 }
+
+.news-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.news-content th,
+.news-content td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.news-content blockquote {
+  border-left: 4px solid #ccc;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  color: #555;
+  background: #f9f9f9;
+}
+
+.news-content a {
+  color: #ff9500;
+  text-decoration: none;
+}

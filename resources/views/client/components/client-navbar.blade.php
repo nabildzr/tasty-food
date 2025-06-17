@@ -13,7 +13,7 @@
     background-position: center;
     background-repeat: no-repeat;">
      <div class="container">
-         <nav class="flex nav w-full items-center mx-5 ">
+         <nav class=" nav  ">
              <a href="/" class="inline-block title">
                  TASTY FOOD
              </a>
@@ -35,7 +35,7 @@
              </button>
          </nav>
          <div class="hero" style="">
-             <h1 style="">
+             <h1 style="" data-aos="fade-up" data-aos-duration="1000">
                  {{ $pageTitle ?? 'HEALTHY TASTY FOOD' }}
              </h1>
          </div>

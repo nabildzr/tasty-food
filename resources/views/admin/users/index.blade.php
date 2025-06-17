@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Roles')
+@section('title', 'Users')
 
 @section('content')
     <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
@@ -35,6 +35,7 @@
                         style="min-width: 1200px;">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -43,6 +44,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -52,6 +54,7 @@
                         <tbody>
                             @forelse ($users as $user)
                                 <tr>
+                                    <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->name }}</td>
@@ -113,22 +116,7 @@
                 </div>
             </div>
         </div>
-        <div class="card card-icon mb-4">
-            <div class="row no-gutters">
-                <div class="col-auto card-icon-aside bg-primary"><i class="mr-1 text-white-50"
-                        data-feather="alert-triangle"></i></div>
-                <div class="col">
-                    <div class="card-body py-5">
-                        <h5 class="card-title">Third-Party Documentation Available</h5>
-                        <p class="card-text">DataTables is a third party plugin that is used to generate the demo table
-                            above. For more information about how to use DataTables with your project, please visit the
-                            official DataTables documentation.</p>
-                        <a class="btn btn-primary btn-sm" href="https://datatables.net/" target="_blank"><i class="mr-1"
-                                data-feather="external-link"></i>Visit DataTables Docs</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 @endsection
 

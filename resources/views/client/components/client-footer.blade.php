@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer-container">
-        <div class="footer-content">
+        <div class="footer-content"  data-aos="fade-up" data-aos-duration="1300">
             <!-- Tasty Food Section -->
             <div class="footer-section">
                 <h3>

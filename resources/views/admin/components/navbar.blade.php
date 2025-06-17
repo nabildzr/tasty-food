@@ -5,8 +5,8 @@
         {{-- <form class="form-inline mr-auto d-none d-lg-block"><input class="form-control form-control-solid mr-sm-2"
                 type="search" placeholder="Search" aria-label="Search" /></form> --}}
         <ul class="navbar-nav align-items-center ml-auto">
-         
-            <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+
+            {{-- <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts"
                     href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"><i data-feather="bell"></i></a>
@@ -45,8 +45,8 @@
                         </div>
                     </a><a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
                 </div>
-            </li>
-            <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
+            </li> --}}
+            {{-- <li class="nav-item dropdown no-caret mr-3 dropdown-notifications">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages"
                     href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"><i data-feather="mail"></i></a>
@@ -80,16 +80,17 @@
                         </div>
                     </a><a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown no-caret mr-3 dropdown-user">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage"
                     href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false"><img class="img-fluid"
-                        src="https://source.unsplash.com/QAB-WJcbgJk/60x60" /></a>
+                        src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : 'https://i.pinimg.com/736x/1a/a8/d7/1aa8d75f3498784bcd2617b3e3d1e0c4.jpg' }}" /></a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
                     aria-labelledby="navbarDropdownUserImage">
-                    <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
+                <h6 class="dropdown-header d-flex align-items-center">
+                        <img class="dropdown-user-img"
+                            src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : 'https://i.pinimg.com/736x/1a/a8/d7/1aa8d75f3498784bcd2617b3e3d1e0c4.jpg' }}" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">{{ Auth::user()->name }}</div>
                             <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>

@@ -35,7 +35,7 @@ class MenuController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'photo' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'required|file|mimes:png,jpg,jpeg|max:10000',
             'description' => 'required|string',
         ]);
 
@@ -88,7 +88,7 @@ class MenuController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'photo' => 'nullable|file|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'nullable|file|mimes:png,jpg,jpeg|max:10000',
             'description' => 'required|string',
         ]);
 

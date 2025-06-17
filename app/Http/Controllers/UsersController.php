@@ -205,7 +205,6 @@ class UsersController extends Controller
             'name' => 'sometimes|string|max:255',
             'email' => 'sometimes|string|email|unique:users,email,'.Auth::id(),
             'new_password' => 'nullable|string|min:6',
-            'role_id' => 'sometimes|exists:roles,id',
         ]);
 
         $status = $user->update($validated);

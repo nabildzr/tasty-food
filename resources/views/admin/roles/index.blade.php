@@ -36,6 +36,7 @@
                             style="min-width: 1200px;">
                             <thead>
                                 <tr>
+                                    <th>Id</th>
                                     <th>Name</th>
                                     <th>News Access</th>
                                     <th>Menu Access</th>
@@ -50,6 +51,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>Id</th>
                                     <th>Name</th>
                                     <th>News Access</th>
                                     <th>Menu Access</th>
@@ -65,6 +67,7 @@
                             <tbody>
                                 @forelse ($roles as $role)
                                     <tr>
+                                        <td>{{ $role->id }}</td>
                                         <td>{{ $role->name }}</td>
                                         <td>
                                             <span class="badge {{ $role->news_access ? 'badge-success' : 'badge-danger' }}">
@@ -165,22 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-icon mb-4">
-                <div class="row no-gutters">
-                    <div class="col-auto card-icon-aside bg-primary"><i class="mr-1 text-white-50"
-                            data-feather="alert-triangle"></i></div>
-                    <div class="col">
-                        <div class="card-body py-5">
-                            <h5 class="card-title">Third-Party Documentation Available</h5>
-                            <p class="card-text">DataTables is a third party plugin that is used to generate the demo table
-                                above. For more information about how to use DataTables with your project, please visit the
-                                official DataTables documentation.</p>
-                            <a class="btn btn-primary btn-sm" href="https://datatables.net/" target="_blank"><i
-                                    class="mr-1" data-feather="external-link"></i>Visit DataTables Docs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
     </main>

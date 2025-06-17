@@ -18,7 +18,7 @@ class AboutUsController extends Controller
             return redirect()->route('dashboard');
         }
 
-        $aboutUs = AboutUs::orderBy('updated_at', 'asc')->get();
+        $aboutUs = AboutUs::all();
 
         return view('admin.about-us.index')->with([
             'aboutUs' => $aboutUs,

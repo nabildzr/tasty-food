@@ -100,9 +100,7 @@
                                                 style="padding: 0.375rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
                                                 onchange="previewImage(event)" />
 
-
-
-                                            @if (isset($result->photo_right))
+                                            @if (isset($result->photo_left))
                                                 <div class="mt-5">
                                                     <img id="photo-preview"
                                                         src="{{ isset($result) && $result->photo_left ? asset('storage/' . $result->photo_left) : '' }}"

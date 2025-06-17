@@ -57,6 +57,12 @@ header img {
   font-weight: bold;
 }
 
+@media (max-width: 400px) {
+  .title {
+    font-size: 25px;
+  }
+}
+
 .nav {
   color: white;
   display: flex;
@@ -75,12 +81,22 @@ header img {
 }
 
 .nav ul li {
-  font-size: 23px
+  font-size: 23px;
+  transition: 300ms;
+}
+
+.nav ul li:hover {
+  color: #FF9500;
 }
 
 .active {
   color: white;
   font-weight: bold;
+  transition: 300ms;
+}
+
+.active:hover {
+  color: #aa6300;
 }
 
 .hero {
