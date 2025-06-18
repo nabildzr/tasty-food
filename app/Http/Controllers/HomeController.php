@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $galleries = Gallery::orderByDesc('created_at')->take(6)->get();
-        $news = News::orderByDesc('created_at')->skip(1)->take(9999)->get();
+        $news = News::orderByDesc('created_at')->skip(1)->take(4)->get();
         $newlyNews = News::orderByDesc('created_at')->first();
 
         return view('client.home.index')->with([

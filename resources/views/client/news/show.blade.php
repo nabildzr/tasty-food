@@ -25,7 +25,7 @@
 @endpush
 
 {{-- banner --}}
-@section('banner', asset('storage/' . $news->banner))
+@section('banner', isset($news->banner) ? asset('storage/' . $news->banner) : "https://i.pinimg.com/736x/e7/f6/e8/e7f6e8474d5c9329f95967f3bf610d85.jpg" )
 
 
 @section('content')

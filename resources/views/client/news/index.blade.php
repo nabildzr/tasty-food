@@ -16,7 +16,7 @@
                 <div class="container">
 
                     <div class="featured-news" >
-                        <img src="{{ asset('storage/' . $newlyNews->banner) }}"
+                        <img src="{{ isset($newlyNews->banner) ? asset('storage/' . $newlyNews->banner) : 'https://i.pinimg.com/736x/e7/f6/e8/e7f6e8474d5c9329f95967f3bf610d85.jpg' }}"
                             alt="{{ $newlyNews->title ?? 'Food Article' }}"
                             data-aos="fade-up" data-aos-duration="1400"
                             >
@@ -24,7 +24,7 @@
                         <div class="featured-description">
                             <h2 class="section-title" data-aos="fade-up" data-aos-duration="1600">{{ $newlyNews->title ?? 'Food Article' }}</h2>
                             <div data-aos="fade-up" data-aos-duration="1600">
-                                {!! Str::limit($newlyNews->content, 300) !!}
+                                {!! $newlyNews->summary !!}
                             </div>
                             <a href="{{ route('client.news.show', $newlyNews->slug) }}" data-aos="fade-up" data-aos-duration="1800">
                                 <button class="btn-primary">BACA SELENGKAPNYA</button>
@@ -75,7 +75,7 @@
                                         alt="{{ $item->title ?? 'Food Article' }}" class="small-image">
                                     <div class="small-content">
                                         <h3 class="small-title">{{ $item->title }}</h3>
-                                        <div class="small-description">{!! Str::limit($item->content, 100) !!}</div>
+                                        <div class="small-description">{!! $item->summary !!}</div>
                                         <div class="small-footer">
                                             <a href="{{ route('client.news.show', $item->slug) }}"
                                                 class="small-read-more">Baca
