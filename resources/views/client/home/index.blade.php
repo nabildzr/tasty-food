@@ -133,9 +133,9 @@
                             alt="{{ $newlyNews->title ?? 'Featured Food' }}" class="featured-image">
                         <div class="featured-content">
                             <h2 class="featured-title">{{ $newlyNews->title }}</h2>
-                            <div class="featured-description">{!! Str::limit($newlyNews->content, 250) !!}</div>
+                            <div class="featured-description">{!! $newlyNews->summary !!}</div>
                             <div class="article-footer">
-                                <a href="" class="read-more">Baca
+                                <a href="{{ route('client.news.show', $newlyNews->slug) }}" class="read-more">Baca
                                     selengkapnya</a>
                                 <span class="more-options">•••</span>
                             </div>
@@ -153,9 +153,9 @@
                                     alt="{{ $item->title ?? 'Food Article' }}" class="small-image">
                                 <div class="small-content">
                                     <h3 class="small-title">{{ $item->title }}</h3>
-                                    <div class="small-description">{!! Str::limit($item->content, 100) !!}</div>
+                                <div class="small-description">{!! $item->summary !!}</div>
                                     <div class="small-footer">
-                                        <a href="" class="small-read-more">Baca
+                                        <a href="{{ route('client.news.show', $item->slug) }}" class="small-read-more">Baca
                                             selengkapnya</a>
                                         <span class="more-options">•••</span>
                                     </div>

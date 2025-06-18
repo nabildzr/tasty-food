@@ -485,15 +485,13 @@ section {
 
 @media (max-width: 1160px) {
   .small-articles {
-    grid-template-rows: 1fr ;
-    
-    height: 400px;
+    grid-template-rows: 1fr;
+
   }
 }
 
 @media (max-width: 500px) {
   .small-articles {
-    height: 350px;
   }
 }
 
@@ -911,3 +909,204 @@ section {
 body.sidebar-open {
   overflow: hidden;
 }
+
+
+
+
+
+/* richtext requirement */
+/* 
+.small-description {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Paragraph */
+.small-description p {
+  margin-bottom: 1em;
+}
+
+/* Heading */
+.small-description h1,
+.small-description h2,
+.small-description h3,
+.small-description h4,
+.small-description h5,
+.small-description h6 {
+  font-weight: bold;
+  margin: 1.2em 0 0.5em;
+}
+
+.small-description h1 { font-size: 2em; }
+.small-description h2 { font-size: 1.75em; }
+.small-description h3 { font-size: 1.5em; }
+.small-description h4 { font-size: 1.25em; }
+.small-description h5 { font-size: 1em; }
+.small-description h6 { font-size: 0.875em; }
+
+/* Bold & Italic */
+.small-description strong {
+  font-weight: bold;
+}
+
+.small-description em {
+  font-style: italic;
+}
+
+/* Blockquote */
+.small-description blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background: #f9f9f9;
+  border-left: 4px solid #ccc;
+  font-style: italic;
+  color: #555;
+}
+
+/* Lists */
+.small-description ul,
+.small-description ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.small-description li {
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+.small-description a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.small-description a:hover {
+  text-decoration: none;
+}
+
+/* Images */
+.small-description img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em 0;
+}
+
+/* Tables */
+.small-description table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.small-description th,
+.small-description td {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.small-description thead {
+  background-color: #f2f2f2;
+}
+
+
+.featured-description {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Paragraph */
+.featured-description p {
+  margin-bottom: 1em;
+}
+
+/* Heading */
+.featured-description h1,
+.featured-description h2,
+.featured-description h3,
+.featured-description h4,
+.featured-description h5,
+.featured-description h6 {
+  font-weight: bold;
+  margin: 1.2em 0 0.5em;
+}
+
+.featured-description h1 { font-size: 2em; }
+.featured-description h2 { font-size: 1.75em; }
+.featured-description h3 { font-size: 1.5em; }
+.featured-description h4 { font-size: 1.25em; }
+.featured-description h5 { font-size: 1em; }
+.featured-description h6 { font-size: 0.875em; }
+
+/* Bold & Italic */
+.featured-description strong {
+  font-weight: bold;
+}
+
+.featured-description em {
+  font-style: italic;
+}
+
+/* Blockquote */
+.featured-description blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background: #f9f9f9;
+  border-left: 4px solid #ccc;
+  font-style: italic;
+  color: #555;
+}
+
+/* Lists */
+.featured-description ul,
+.featured-description ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.featured-description li {
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+.featured-description a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.featured-description a:hover {
+  text-decoration: none;
+}
+
+/* Images */
+.featured-description img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em 0;
+}
+
+/* Tables */
+.featured-description table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.featured-description th,
+.featured-description td {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.featured-description thead {
+  background-color: #f2f2f2;
+} */

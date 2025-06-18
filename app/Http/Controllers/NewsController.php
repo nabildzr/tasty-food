@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -72,6 +73,8 @@ class NewsController extends Controller
             'content' => 'required|string',
         ]);
 
+        $validated['summary'] = Str::limit(strip_tags($request->input('content')), 150);
+
         if ($request->file('banner')) {
             $validated['banner'] = $request->file('banner')->store('news_banner', 'public');
         }
@@ -81,7 +84,7 @@ class NewsController extends Controller
         $slug = $baseSlug;
         $counter = 2;
         while (News::where('slug', $slug)->exists()) {
-            $slug = $baseSlug.'-'.$counter;
+            $slug = $baseSlug . '-' . $counter;
             $counter++;
             // ex: wadaw-berita-coi is exist then will be wadaw-berita-coi-2
         }
@@ -141,6 +144,9 @@ class NewsController extends Controller
             'content' => 'required|string',
         ]);
 
+        $validated['summary'] = "awdawawd";
+
+
         // $validated['slug'] = str_replace(' ', '-', strtolower($validated['slug']));
         $validated['slug'] = str_replace(' ', '-', strtolower($validated['title']));
 
@@ -155,7 +161,7 @@ class NewsController extends Controller
 
         $status = $news->update($validated);
 
-        if (! $status) {
+        if (!$status) {
             return back()->with([
                 'error' => 'Failed to create News',
             ]);

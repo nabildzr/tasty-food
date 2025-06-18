@@ -77,6 +77,7 @@
                                         <div class="form-group" style="margin-bottom: 1.5rem;">
                                             <label for="photo_left" style="font-weight: 600; color: #495057;">Photo
                                                 Left</label>
+
                                             @if (isset($result->photo_left) && $result->photo_left)
                                                 <div class="form-check mb-2">
                                                     <input type="checkbox" class="form-check-input" id="delete_photo_left"
@@ -88,6 +89,7 @@
                                             <script>
                                                 function clearPhotoLeftInput() {
                                                     const input = document.getElementById('photo_left');
+                                                    const textInput = document.getElementById('text_photo_left');
                                                     input.value = '';
                                                     const preview = document.getElementById('photo-preview');
                                                     if (preview) {
@@ -102,6 +104,8 @@
 
                                             @if (isset($result->photo_left))
                                                 <div class="mt-5">
+                                                    <p id="text_photo_left">
+                                                        Currently Photo:</p>
                                                     <img id="photo-preview"
                                                         src="{{ isset($result) && $result->photo_left ? asset('storage/' . $result->photo_left) : '' }}"
                                                         alt="Image Preview Left"
@@ -127,13 +131,20 @@
                                                 </div>
                                             @endif
                                             <script>
-                                                function clearPhotoRightInput() {
-                                                    const input = document.getElementById('photo_right');
-                                                    input.value = '';
-                                                    const preview = document.getElementById('photo-preview2');
-                                                    if (preview) {
-                                                        preview.src = '';
-                                                        preview.style.display = 'none';
+                                                function previewPhoto(event, leftOrRight) {
+                                                    const input = event.target
+                                                    const preview = document.getElementById('photo-preview');
+                                                    const inputText = document.getElementById('');
+                                                    if(input.files && input.files[0]) {
+                                                        const reader = new FileReader()
+                                                        reader.onload = (e) => {
+                                                            preview.src = e.target.result
+                                                            preview.style.display = 'block'
+                                                        }
+                                                        reader.readAsDataURL(input.files[0])
+                                                    } else {
+                                                        preview.src = '#'
+                                                        preview.style.display = 'none'
                                                     }
                                                 }
                                             </script>
@@ -144,6 +155,13 @@
 
                                             @if (isset($result->photo_right))
                                                 <div class="mt-5">
+                                                    <p id="text_photo_right" >
+                                                        Currently Photo:</p>
+                                                      <img src="#" id="photo-preview" alt="Preview Image from Input"
+                                                    style="max-width: 200px; max-height: 200px; display: none; margin-bottom:20px;">
+                                                    
+                                                    <p id="text_photo_right">
+                                                        Currently Photo:</p>
                                                     <img id="photo-preview2"
                                                         src="{{ isset($result) && $result->photo_right ? asset('storage/' . $result->photo_right) : '' }}"
                                                         alt="Image Preview Right"

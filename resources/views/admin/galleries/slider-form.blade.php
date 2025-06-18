@@ -15,7 +15,7 @@
                     <span>{{ isset($result) ? 'Edit Slider Gallery' : 'Create Slider Gallery' }}</span>
                 </h1>
                 <div class="page-header-subtitle">
-                     Use this dynamic form to easily {{ isset($result) ? 'edit' : 'create' }} data.
+                    Use this dynamic form to easily {{ isset($result) ? 'edit' : 'create' }} data.
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                             @include('admin.layouts.feedback')
 
                         </div>
-                        
+
                         <div class="card-body">
                             <div class="sbp-preview">
                                 <div class="sbp-preview-content">
@@ -46,9 +46,17 @@
                                             <label for="photo" style="font-weight: 600; color: #495057;">Photo</label>
                                             <input class="form-control" id="photo" name="photo" type="file"
                                                 style="padding: 0.375rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
-                                                onchange="previewImage(event)" />
+                                                onchange="previewPhoto(event)" />
 
                                             <div class="mt-5">
+                                                <p id="input-text" style="display: none;">New Photo:</p>
+                                                <img src="#" id="photo-preview" alt="Preview Image from Input"
+                                                    style="max-width: 200px; max-height: 200px; display: none; margin-bottom:20px;">
+                                                @if (isset($result->photo))
+                                                    <p id="input-text"
+                                                        style="display: {{ isset($result->photo) ? 'block' : 'none' }};">
+                                                        Currently Photo:</p>
+                                                @endif
                                                 <img id="photo-preview"
                                                     src="{{ isset($result) && $result->photo ? asset('storage/' . $result->photo) : '' }}"
                                                     alt="Image Preview"
@@ -59,7 +67,7 @@
                                             function previewImage(event) {
                                                 const input = event.input
                                                 const preview = document.getElementById('photo-preview')
-                                                if(input.files && input.files[0]) {
+                                                if (input.files && input.files[0]) {
                                                     const reader = new FileReader()
                                                     reader.onload = (e) => {
                                                         preview.src = e.target.result;
@@ -69,6 +77,25 @@
                                                 } else {
                                                     preview.src = ''
                                                     preview.style.display = 'none'
+                                                }
+                                            }
+
+                                           function previewPhoto(event) {
+                                                const input = event.target;
+                                                const preview = document.getElementById('photo-preview');
+                                                const inputText = document.getElementById('input-text');
+                                                if (input.files && input.files[0]) {
+                                                    const reader = new FileReader();
+                                                    reader.onload = function(e) {
+                                                        preview.src = e.target.result;
+                                                        preview.style.display = 'block';
+                                                        inputText.style.display = 'block';
+                                                    }
+                                                    reader.readAsDataURL(input.files[0]);
+                                                } else {
+                                                    preview.src = '#';
+                                                    preview.style.display = 'none';
+                                                    inputText.style.display = 'none';
                                                 }
                                             }
                                         </script>

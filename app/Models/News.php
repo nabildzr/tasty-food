@@ -14,6 +14,7 @@ class News extends Model
         'slug',
         'title',
         'content',
+        'summary',
         'created_by',
     ];
 

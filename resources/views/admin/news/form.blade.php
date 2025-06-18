@@ -15,7 +15,7 @@
                     <span>{{ isset($result) ? 'Edit News' : 'Create News' }}</span>
                 </h1>
                 <div class="page-header-subtitle">
-                  Use this dynamic form to easily {{ isset($result) ? 'edit' : 'create' }} data.
+                    Use this dynamic form to easily {{ isset($result) ? 'edit' : 'create' }} data.
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                             @include('admin.layouts.feedback')
 
                         </div>
-                        
+
                         <div class="card-body">
                             <div class="sbp-preview">
                                 <div class="sbp-preview-content">
@@ -54,9 +54,17 @@
                                             <label for="banner" style="font-weight: 600; color: #495057;">Photo</label>
                                             <input class="form-control" id="banner" name="banner" type="file"
                                                 style="padding: 0.375rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
-                                                onchange="previewImage(event)" />
+                                                onchange="previewPhoto(event)" />
 
                                             <div class="mt-5">
+                                                <p id="input-text" style="display: none;">New Photo:</p>
+                                                <img src="#" id="photo-preview" alt="Preview Image from Input"
+                                                    style="max-width: 200px; max-height: 200px; display: none; margin-bottom:20px;">
+                                                @if (isset($result->banner))
+                                                    <p id="input-text"
+                                                        style="display: {{ isset($result->banner) ? 'block' : 'none' }};">
+                                                        Currently Photo:</p>
+                                                @endif
                                                 <img id="photo-preview"
                                                     src="{{ isset($result) && $result->banner ? asset('storage/' . $result->banner) : '' }}"
                                                     alt="Image Preview"
@@ -64,23 +72,46 @@
                                             </div>
                                         </div>
                                         <script>
-                                            function previewImage(event) {
-                                                const input = event.input
-                                                const preview = document.getElementById('photo-preview')
-                                                if(input.files && input.files[0]) {
-                                                    const reader = new FileReader()
-                                                    reader.onload = (e) => {
+                                            // preview while creating/updating (upload)
+                                            function previewPhoto(event) {
+                                                const input = event.target;
+                                                const preview = document.getElementById('photo-preview');
+                                                const inputText = document.getElementById('input-text');
+                                                if (input.files && input.files[0]) {
+                                                    const reader = new FileReader();
+                                                    reader.onload = function(e) {
                                                         preview.src = e.target.result;
-                                                        preview.style.display = 'block'
+                                                        preview.style.display = 'block';
+                                                        inputText.style.display = 'block';
                                                     }
-                                                    reader.readAsDataURL(input.files[0])
+                                                    reader.readAsDataURL(input.files[0]);
                                                 } else {
-                                                    preview.src = ''
-                                                    preview.style.display = 'none'
+                                                    preview.src = '#';
+                                                    preview.style.display = 'none';
+                                                    preview.style.display = 'none';
+                                                }
+                                            }
+
+                                            // preview while edit
+                                            function previewImage(event) {
+                                                const input = event.input;
+                                                const preview = document.getElementById('photo-preview');
+                                                if (input.files && input.files[0]) {
+                                                    const reader = new FileReader();
+                                                    reader.onload = function(e) {
+                                                        preview.src = e.target.result;
+                                                        preview.style.display = 'block';
+                                                    }
+                                                    reader.readAsDataURL(input.files[0]);
+                                                } else {
+                                                    preview.src = '#';
+                                                    preview.style.display = 'none';
                                                 }
                                             }
                                         </script>
 
+
+                                        <input class="form-control" id="summary" name="summary" type="hidden" />
 
                                         <div class="form-group">
                                             <label for="content">Content</label>
