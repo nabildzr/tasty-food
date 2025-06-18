@@ -16,7 +16,7 @@
                 <div class="container">
 
                     <div class="featured-news" >
-                        <img src="{{ asset('storage/' . $newlyNews->banner) }}"
+                        <img src="{{ isset($newlyNews->banner) ? asset('storage/' . $newlyNews->banner) : 'https://i.pinimg.com/736x/e7/f6/e8/e7f6e8474d5c9329f95967f3bf610d85.jpg' }}"
                             alt="{{ $newlyNews->title ?? 'Food Article' }}"
                             data-aos="fade-up" data-aos-duration="1400"
                             >

@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (! user_can('users_access')) {
+        if (!user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -31,7 +31,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (! user_can('users_access')) {
+        if (!user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -47,7 +47,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        if (! user_can('users_access')) {
+        if (!user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -68,7 +68,7 @@ class UsersController extends Controller
 
         $user = User::create($validated);
 
-        if (! $user) {
+        if (!$user) {
             return back()->with([
                 'error' => 'Failed to create User',
             ]);
@@ -120,7 +120,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (! user_can('users_access')) {
+        if (!user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 
@@ -144,7 +144,7 @@ class UsersController extends Controller
 
         $status = $user->update($validated);
 
-        if (! $status) {
+        if (!$status) {
             return back()->with([
                 'error' => 'Failed to update User',
             ]);
@@ -160,7 +160,7 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        if (! user_can('users_access')) {
+        if (!user_can('users_access')) {
             return redirect()->route('dashboard');
         }
 

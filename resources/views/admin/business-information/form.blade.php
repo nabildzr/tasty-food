@@ -60,10 +60,10 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="location">Location Address</label>
+                                            <label for="location">Location Address (Auto filled from the maps)</label>
                                             <input class="form-control" id="location" name="location" type="text"
                                                 value="{{ old('location', isset($businessInformation) ? $businessInformation->location : '') }}"
-                                                placeholder="Location Address" required />
+                                                placeholder="Location Address" required disabled/>
                                         </div>
 
                                         <div class="form-group">

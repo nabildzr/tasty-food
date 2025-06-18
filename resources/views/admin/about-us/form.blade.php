@@ -74,7 +74,7 @@
 
 
 
-                                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                                        <div class="form-group" >
                                             <label for="photo_left" style="font-weight: 600; color: #495057;">Photo
                                                 Left</label>
 
@@ -100,18 +100,24 @@
                                             </script>
                                             <input class="form-control" id="photo_left" name="photo_left" type="file"
                                                 style="padding: 0.375rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
-                                                onchange="previewImage(event)" />
+                                                onchange="previewPhoto(event, 'left')" />
 
-                                            @if (isset($result->photo_left))
-                                                <div class="mt-5">
-                                                    <p id="text_photo_left">
+                                            <div class="mt-5" style="margin-bottom: 10px">
+                                                <p id="text-photo-left" style="display: none">
+                                                    New Photo:</p>
+                                                <img src="#" id="photo-preview-left" alt="Preview Image from Input"
+                                                    style="max-width: 200px; max-height: 200px; display: none; margin-bottom:20px;">
+                                                @if (isset($result->photo_left))
+                                                    <p id="text_photo_left"
+                                                        style="display: {{ isset($result) && $result->photo_left ? 'block' : 'none' }};">
                                                         Currently Photo:</p>
-                                                    <img id="photo-preview"
+                                                    <img id="photo-preview-left"
                                                         src="{{ isset($result) && $result->photo_left ? asset('storage/' . $result->photo_left) : '' }}"
                                                         alt="Image Preview Left"
                                                         style="max-width: 200px; max-height: 200px; display: {{ isset($result) && $result->photo_left ? 'block' : 'none' }}; border: 1px solid #eee; border-radius: 0.25rem;">
-                                                </div>
-                                            @else
+                                                @endif
+                                            </div>
+                                            @if (!isset($result->photo_left))
                                                 <div class="mt-5">
                                                     No Photo For Left
                                                 </div>
@@ -126,52 +132,38 @@
                                                 <div class="form-check mb-2">
                                                     <input type="checkbox" class="form-check-input" id="delete_photo_right"
                                                         name="delete_photo_right" value="1">
-                                                    <label class="form-check-label" for="delete_photo_right">Delete Photo
+                                                    <label class="form-check-label" for="delete_photo_right">Delete
+                                                        Photo
                                                         Right</label>
                                                 </div>
                                             @endif
-                                            <script>
-                                                function previewPhoto(event, leftOrRight) {
-                                                    const input = event.target
-                                                    const preview = document.getElementById('photo-preview');
-                                                    const inputText = document.getElementById('');
-                                                    if(input.files && input.files[0]) {
-                                                        const reader = new FileReader()
-                                                        reader.onload = (e) => {
-                                                            preview.src = e.target.result
-                                                            preview.style.display = 'block'
-                                                        }
-                                                        reader.readAsDataURL(input.files[0])
-                                                    } else {
-                                                        preview.src = '#'
-                                                        preview.style.display = 'none'
-                                                    }
-                                                }
-                                            </script>
+
 
                                             <input class="form-control" id="photo_right" name="photo_right" type="file"
                                                 style="padding: 0.375rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
-                                                onchange="previewImageTwo(event)" />
+                                                onchange="previewPhoto(event, 'right')" />
 
-                                            @if (isset($result->photo_right))
-                                                <div class="mt-5">
-                                                    <p id="text_photo_right" >
-                                                        Currently Photo:</p>
-                                                      <img src="#" id="photo-preview" alt="Preview Image from Input"
+                                            <div class="mt-5">
+                                                <p id="text-photo-right" style="display: none">
+                                                    New Photo:</p>
+                                                <img src="#" id="photo-preview-right" alt="Preview Image from Input"
                                                     style="max-width: 200px; max-height: 200px; display: none; margin-bottom:20px;">
-                                                    
-                                                    <p id="text_photo_right">
+                                                @if (isset($result->photo_right))
+                                                    <p id="text_photo_right"
+                                                        style="display: {{ isset($result) && $result->photo_right ? 'block' : 'none' }};">
                                                         Currently Photo:</p>
-                                                    <img id="photo-preview2"
+                                                    <img id="photo-preview-right"
                                                         src="{{ isset($result) && $result->photo_right ? asset('storage/' . $result->photo_right) : '' }}"
                                                         alt="Image Preview Right"
                                                         style="max-width: 200px; max-height: 200px; display: {{ isset($result) && $result->photo_right ? 'block' : 'none' }}; border: 1px solid #eee; border-radius: 0.25rem;">
-                                                </div>
-                                            @else
+                                                @endif
+                                            </div>
+                                            @if (!isset($result->photo_right))
                                                 <div class="mt-5">
                                                     No Photo For Right
                                                 </div>
                                             @endif
+
 
                                         </div>
                                         <script>
@@ -204,6 +196,25 @@
                                                 } else {
                                                     preview.src = ''
                                                     preview.style.display = 'none'
+                                                }
+                                            }
+
+                                            function previewPhoto(event, leftOrRight) {
+                                                const input = event.target
+                                                const preview = document.getElementById(`photo-preview-${leftOrRight}`);
+                                                const inputText = document.getElementById(`text-photo-${leftOrRight}`);
+                                                if (input.files && input.files[0]) {
+                                                    const reader = new FileReader()
+                                                    reader.onload = (e) => {
+                                                        preview.src = e.target.result
+                                                        preview.style.display = 'block'
+                                                        inputText.style.display = 'block'
+                                                    }
+                                                    reader.readAsDataURL(input.files[0])
+                                                } else {
+                                                    preview.src = '#'
+                                                    preview.style.display = 'none'
+                                                    inputText.style.display = 'none'
                                                 }
                                             }
                                         </script>
