@@ -28,6 +28,9 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  aspect-ratio: 1 / 1; /* Ensures square shape */
+  display: flex;
+  align-items: stretch;
 }
 
 .gallery-item:hover {
@@ -37,10 +40,11 @@
 
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  height: auto;
+  aspect-ratio: 1 / 1; /* Ensures image stays square */
+  display: block;
 }
 
 .gallery-item:hover img {
@@ -79,9 +83,7 @@
     margin-bottom: 30px;
   }
 
-  .gallery-item img {
-    height: 220px;
-  }
+
 }
 
 @media (max-width: 480px) {

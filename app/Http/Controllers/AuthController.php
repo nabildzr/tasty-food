@@ -26,7 +26,6 @@ class AuthController extends Controller
         // $user = User::where('email', $request->email)->first();
 
         if (Auth::attempt($validated, $remember)) {
-
             return redirect()->route('dashboard');
         }
 

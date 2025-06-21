@@ -80,7 +80,6 @@
                         <span>{{ $businessInformation->location }}</span>
                     </div>
                 </div>
-
         </section>
 
         <section>

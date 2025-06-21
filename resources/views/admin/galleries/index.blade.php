@@ -94,7 +94,7 @@
                                                 <button class="btn btn-secondary" type="button"
                                                     data-dismiss="modal">Close</button>
 
-                                                <form action="{{ route('news.delete', $gallery->id) }}" method="POST">
+                                                <form action="{{ route('galleries.delete', $gallery->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-primary" type="submit">I'm Sure</button>
