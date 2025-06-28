@@ -106,8 +106,8 @@
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     // Set default location (Jakarta) atau lokasi yang sudah ada jika edit
-                    const defaultLat = {{ isset($result) && $result->latitude ? $result->latitude : -6.2088 }};
-                    const defaultLng = {{ isset($result) && $result->longitude ? $result->longitude : 106.8456 }};
+                    const defaultLat = {{ isset($businessInformation) && $businessInformation->latitude ? $businessInformation->latitude : -6.2088 }};
+                    const defaultLng = {{ isset($businessInformation) && $businessInformation->longitude ? $businessInformation->longitude : 106.8456 }};
 
                     // Initialize map
                     const map = L.map('map').setView([defaultLat, defaultLng], 13);

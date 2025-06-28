@@ -1,8 +1,4 @@
-.contact-title {
-  font-size: 35px;
-  font-weight: bold;
-  padding-bottom: 50px;
-}
+
 
 /* form  */
 
@@ -152,7 +148,7 @@ textarea {
   flex-wrap: wrap;
   justify-content: center;
   gap: 50px;
-  padding-top: 40px;
+  padding: 40px 0px;
 }
 
 .item-label {

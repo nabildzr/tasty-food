@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif; 
+  font-family: 'Open Sans', sans-serif;
 }
 
 html,
@@ -14,7 +14,27 @@ body {
 
 }
 
+button {
+  border: none;
+}
 
+
+ul {
+  list-style-type: none;
+
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.sub-title {
+  font-size: 35px;
+  font-weight: bold;
+}
 
 :root {
   --primary-color: #FF9500;
@@ -22,10 +42,7 @@ body {
 }
 
 .container {
-    max-width: 1400px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
-
-

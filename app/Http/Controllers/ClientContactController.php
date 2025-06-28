@@ -35,6 +35,11 @@ class ClientContactController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'message' => 'required|string',
+
+            'g-recaptcha-response' => 'required|captcha'
+        ], [
+            'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
+            'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
         ]);
 
         $contact = Contact::create($validated);

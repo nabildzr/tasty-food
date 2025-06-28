@@ -16,13 +16,25 @@
 
         <section style="background-color: #ffffff; padding-top: 120px; padding-bottom: 10px;">
             <div class="container">
-                <a href="#" class="contact-title" style="" data-aos="fade-up" data-aos-duration="2000">
-                    KONTAK KAMI
-                </a>
+                <div>
+                    <p href="#" class="sub-title" style="" data-aos="fade-up" data-aos-duration="2000">
+                        KONTAK KAMI
+                    </p>
+                </div>
 
-                @if(session('success'))
-                    <div style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 15px; margin-bottom: 20px;">
-                    {{ session('success') }}
+                @if (session('success'))
+                    <div
+                        style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 15px; margin-bottom: 20px;">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                
+                @if ($errors->any())
+                    <div
+                        style="background-color: #edd4d4; color: #571515; border: 1px solid #e6c3c3; padding: 15px; border-radius: 15px; margin-bottom: 20px;">
+                       @foreach ($errors->all() as $error)
+                           {{ $error }}
+                       @endforeach
                     </div>
                 @endif
 
@@ -31,27 +43,30 @@
                     <div class="form-grid">
                         <div class="left-column" style="">
                             <div class="form-group" style="" data-aos="fade-up" data-aos-duration="1000">
-                                <input type="text" id="subject" name="subject" placeholder="Subject" required
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required value="{{ old('subject') }}"
                                     style="height: 100%;">
                             </div>
 
                             <div class="form-group" style="" data-aos="fade-up" data-aos-duration="1200">
-                                <input type="text" id="name" name="name" placeholder="Name" required
+                                <input type="text" id="name" name="name" placeholder="Name" required value="{{ old('name') }}"
                                     style="height: 100%;">
                             </div>
 
                             <div class="form-group" style="" data-aos="fade-up" data-aos-duration="1400">
-                                <input type="email" id="email" name="email" placeholder="Email" required
+                                <input type="email" id="email" name="email" placeholder="Email" required value="{{ old('email') }}"
                                     style="height: 100%;">
                             </div>
                         </div>
 
-                        <div class="message-column" style="" data-aos="fade-up" data-aos-duration="1600"> 
+                        <div class="message-column" style="" data-aos="fade-up" data-aos-duration="1600">
                             <div class="form-group" style="">
-                                <textarea name="message" placeholder="Message" required style=""></textarea>
+                                <textarea name="message" placeholder="Message" required style="">{{ old('message') }}</textarea>
                             </div>
                         </div>
                     </div>
+
+                    {!! NoCaptcha::renderJs() !!}
+                  {!! NoCaptcha::display(['data-theme' => 'dark']) !!}
 
                     <button type="submit" class="submit-btn" data-aos="fade-up" data-aos-duration="1800">Kirim</button>
                 </form>
@@ -97,5 +112,7 @@
     </main>
 
     <script src="{{ asset('client/js/sidebar.js') }}"></script>
+
+
 
 @endsection

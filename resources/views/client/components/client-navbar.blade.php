@@ -29,7 +29,7 @@
                          class="{{ request()->is('contact') ? 'active' : '' }}">KONTAK</a></li>
 
              </ul>
-             <button id="hamburgerBtn" class="ml-auto p-2 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none"
+             <button id="hamburgerBtn" class=""
                  aria-label="Open Sidebar">
                  <iconify-icon icon="mdi:menu" width="30" height="30" style="color:white;"></iconify-icon>
              </button>

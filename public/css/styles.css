@@ -19883,6 +19883,7 @@ body {
 }
 .nav-sticky ul.nav > li.nav-item > .nav {
   display: none;
+  
 }
 .nav-sticky ul.nav > li.nav-item > a.nav-link.active ~ .nav {
   display: -webkit-box;

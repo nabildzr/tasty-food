@@ -45,7 +45,8 @@
             </button>
         </nav>
         <div class="hero">
-            <hr class="divider" data-aos="fade-up" data-aos-duration="800">
+            <hr class="divider" data-aos="fade-up" data-aos-duration="800"
+               >
 
             <h1 class="" data-aos="fade-up" data-aos-duration="1000">
                 HEALTHY
@@ -74,7 +75,7 @@
                 tempora labore necessitatibus
                 sequi et consequuntur ab debitis. Consectetur dolorem ducimus possimus sunt minima nemo omnis nesciunt
                 iure. Debitis, aspernatur!</p>
-            <hr class="divider" data-aos="fade-up" data-aos-duration="1200">
+            <hr class="divider" data-aos="fade-up" data-aos-duration="1200" style="border-style:solid">
         </section>
         <section class="menu-section section">
             <div class="container" data-aos="fade-up" data-aos-duration="1000">
@@ -153,9 +154,10 @@
                                     alt="{{ $item->title ?? 'Food Article' }}" class="small-image">
                                 <div class="small-content">
                                     <h3 class="small-title">{{ $item->title }}</h3>
-                                <div class="small-description">{!! $item->summary !!}</div>
+                                    <div class="small-description">{!! $item->summary !!}</div>
                                     <div class="small-footer">
-                                        <a href="{{ route('client.news.show', $item->slug) }}" class="small-read-more">Baca
+                                        <a href="{{ route('client.news.show', $item->slug) }}"
+                                            class="small-read-more">Baca
                                             selengkapnya</a>
                                         <span class="more-options">•••</span>
                                     </div>
@@ -188,7 +190,7 @@
 
             </div>
 
-            @if (($news->count() + (isset($newlyNews) && $newlyNews ? 1 : 0)) >= 5)
+            @if ($news->count() + (isset($newlyNews) && $newlyNews ? 1 : 0) >= 5)
                 <a href="{{ route('client.news') }}"
                     style="margin-top: 40px; display: flex; justify-content: center;" data-aos="fade-up"
                     data-aos-duration="2200">

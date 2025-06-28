@@ -55,7 +55,7 @@ class GalleriesController extends Controller
         if ($request->file('photo')) {
             $validated['photo'] = $request->file('photo')->store('galleries', 'public');
         }
-
+        
         $validated['created_by'] = User::find(1)->id;
         // $validated['created_by'] = Auth::user()->id;
 
@@ -278,7 +278,7 @@ class GalleriesController extends Controller
             ]);
         }
 
-        return redirect()->route('galleries.index')->with([
+        return redirect()->route('galleries.slider.index')->with([
             'success' => 'Gallery successfully updated.',
         ]);
     }

@@ -54,7 +54,13 @@ header img {
 
 .title {
   font-size: 35px;
+  transition: 300ms;
+  color: white;
   font-weight: bold;
+}
+
+.title:hover {
+  color: #FF9500;
 }
 
 @media (max-width: 400px) {
@@ -64,28 +70,42 @@ header img {
 }
 
 .nav {
+  align-items: center;
   color: white;
   display: flex;
   padding: 40px 0;
- position: sticky;
-    top: 0;
-    z-index: 100;
-    background: inherit; 
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: inherit;
   justify-content: space-between;
   gap: 3.5rem;
 }
 
+#hamburgerBtn {
+  align-items: center;
+  display: flex;
+}
+
+.nav ul li a {
+  transition: 300ms;
+  text-decoration: none;
+  color: white;
+}
+
 .nav ul {
   display: flex;
+  list-style-type: none;
   gap: 40px;
 }
 
 .nav ul li {
+  list-style-type: none;
   font-size: 23px;
   transition: 300ms;
 }
 
-.nav ul li:hover {
+.nav ul li a:hover {
   color: #FF9500;
 }
 
@@ -110,6 +130,7 @@ header img {
 
 .divider {
   border-width: 1.5px;
+  border-style: solid;
   width: 105px;
 }
 
@@ -159,7 +180,7 @@ header img {
     display: none;
   }
 
-  
+
   #hamburgerBtn {
     display: block;
 
@@ -202,28 +223,35 @@ header img {
   background: linear-gradient(135deg, #FF9500 0%, #FF9500 100%);
   color: #fff;
   z-index: 2000;
-  transition: left 0.3s cubic-bezier(.4,2,.6,1);
-  box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+  transition: left 0.3s cubic-bezier(.4, 2, .6, 1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
 }
-.sidebar.active { left: 0; }
+
+.sidebar.active {
+  left: 0;
+}
+
 .sidebar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 22px 20px 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .sidebar-title:hover {
   color: #000;
 }
+
 .sidebar-title {
   font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
   transition: 300ms;
 }
+
 .close-btn {
   background: none;
   border: none;
@@ -233,44 +261,71 @@ header img {
   border-radius: 4px;
   transition: background 0.2s;
 }
-.close-btn:hover { background: rgba(255,255,255,0.12); }
-.sidebar-nav { flex: 1; padding: 18px 0; }
-.sidebar-nav ul { list-style: none; margin: 0; padding: 0; }
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 18px 0;
+}
+
+.sidebar-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .sidebar-link {
+  list-style-type: none;
   display: flex;
   align-items: center;
   gap: 15px;
   padding: 13px 28px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 1.08rem;
   font-weight: 500;
   border-left: 4px solid transparent;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
+
 .sidebar-link:hover,
 .sidebar-link.active {
-  background: rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.10);
   color: #fff;
   border-left: 4px solid #fff;
 }
-.sidebar-link iconify-icon { flex-shrink: 0; opacity: 0.85; }
+
+.sidebar-link iconify-icon {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
 .sidebar-link:hover iconify-icon,
-.sidebar-link.active iconify-icon { opacity: 1; }
+.sidebar-link.active iconify-icon {
+  opacity: 1;
+}
+
 .sidebar-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.35);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1999;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s;
 }
+
 .sidebar-overlay.active {
   opacity: 1;
   visibility: visible;
 }
+
 .hamburger-btn {
   position: fixed;
   top: 48px;
@@ -283,18 +338,34 @@ header img {
   padding: 10px 12px;
   cursor: pointer;
   display: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.13);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
   transition: background 0.2s, transform 0.2s;
 }
+
 .hamburger-btn:hover {
   background: #333;
   transform: scale(1.07);
 }
+
 @media (max-width: 1000px) {
-  .hamburger-btn { display: block; }
-  .nav ul { display: none !important; }
+  .hamburger-btn {
+    display: block;
+  }
+
+  .nav ul {
+    display: none !important;
+  }
 }
+
 @media (min-width: 1001px) {
-  .sidebar, .sidebar-overlay, .hamburger-btn { display: none !important; }
+
+  .sidebar,
+  .sidebar-overlay,
+  .hamburger-btn {
+    display: none !important;
+  }
 }
-body.sidebar-open { overflow: hidden; }
+
+body.sidebar-open {
+  overflow: hidden;
+}
